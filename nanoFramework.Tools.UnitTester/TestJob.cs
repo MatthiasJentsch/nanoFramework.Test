@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 
 namespace nanoFramework.Tools.UnitTester
 {
@@ -120,7 +121,7 @@ namespace nanoFramework.Tools.UnitTester
 
 			// create results list and the debugger instance
 			IList<UnitTestAssemblyResult> results = new List<UnitTestAssemblyResult>();
-			IDebugEngine debugger = DebugEngineFactory.Get(Path.Combine(debuggerAssembly.FullName, "nanoFramework.Tools.Debugger.dll"), DebugEngineKind.DirectNewAppDomain);
+			IDebugEngine debugger = DebugEngineFactory.Get(Path.Combine(debuggerAssembly.FullName, "nanoFramework.Tools.Debugger.dll"), DebugEngineKind.DirectSameAppDomain);
 			try
 			{
 				// each test library must be executed standalone.
@@ -145,7 +146,7 @@ namespace nanoFramework.Tools.UnitTester
 
 					// load all the needed binaries for deployment
 					List<byte[]> binaries = new List<byte[]>();
-					foreach (KeyValuePair<string, DirectoryInfo> assemblyInfo in knownAssemblies)
+					foreach (KeyValuePair<string, DirectoryInfo> assemblyInfo in deploymentAssemblies)
 					{
 						FileInfo[] peFiles = assemblyInfo.Value.GetFiles(assemblyInfo.Key + ".pe");
 						if (peFiles != null && peFiles.Length == 1)

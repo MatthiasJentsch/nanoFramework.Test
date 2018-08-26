@@ -278,7 +278,11 @@ namespace nanoFramework.Tools.UnitTester
 		internal async Task<IList<UnitTestAssemblyResult>> ObserveExecution()
 		{
 			// wait for the semaphore and returns the results
-			await _waitForFinished.WaitAsync();
+			bool test = await _waitForFinished.WaitAsync(30000);
+			if (!test)
+			{
+				throw new TimeoutException();
+			}
 			return _results;
 		}
 
@@ -346,6 +350,7 @@ namespace nanoFramework.Tools.UnitTester
 		{
 			string className = null;
 			UnitTestResult result = null;
+			Console.WriteLine(message);
 
 			foreach (KeyValuePair<MessageParsing, string> entry in _regexParsing)
 			{

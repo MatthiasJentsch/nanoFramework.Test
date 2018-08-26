@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace nanoFramework.Tools.UnitTestManager.Models
@@ -113,6 +114,7 @@ namespace nanoFramework.Tools.UnitTestManager.Models
 				_wakeOnLanMacAddress = PhysicalAddress.Parse(wakeOnLanMacAddress);
 			}
 			_availableDevices = new List<ConnectedDevice>(connectedDevices);
+			new Thread(new ThreadStart(TestObserver)).Start();
 		}
 
 		public bool IsDeviceTypeConnected(string deviceType)
@@ -153,6 +155,7 @@ namespace nanoFramework.Tools.UnitTestManager.Models
 					EstimatedRemainingTime = new TimeSpan(0, 1, 0)
 				};
 				_runningTests.Add(test);
+				_availableDevices.Remove(_availableDevices.Find(device => device.DeviceName == testDevice.DeviceName));
 				return test;
 			}
 			return null;
@@ -174,7 +177,14 @@ namespace nanoFramework.Tools.UnitTestManager.Models
 			}
 			else
 			{
-				// TODO: Find test results
+				FileInfo[] files = _resultsDirectory.GetFiles($"*{testId}.json");
+				if (files.Length > 0)
+				{
+					result.DeviceName = running.DeviceName;
+					result.DeviceType = running.DeviceType;
+					result.Result = "Finished!";
+					result.Details = File.ReadAllLines(files[0].FullName);
+				}
 			}
 			return result;
 		}
@@ -200,6 +210,21 @@ namespace nanoFramework.Tools.UnitTestManager.Models
 
 			// Send WOL packet.
 			client.Send(packet, packet.Length);
+		}
+
+		private void TestObserver()
+		{
+			while (true)
+			{
+				foreach (RunningTest runningTest in _runningTests.ToArray())
+				{
+					if (_resultsDirectory.GetFiles($"*{runningTest.TestId}.json").Length > 0)
+					{
+						_runningTests.Remove(runningTest);
+					}
+				}
+				Thread.Sleep(10000);
+			}
 		}
 	}
 }
