@@ -1,7 +1,7 @@
 # nanoFramework.Test
 This repository is a try to implement a unit testing framework for the nanoFramework.
 ## Idea
-I general it would be good to have unit tests for each nanoFramework library method. To archive this there is for each library a test assembly can be made.
+I general it would be good to have unit tests for each nanoFramework library method. To archive this a test assembly can be made each library.
 ### Inside the nanoFramework device - implemented in nanoFramework C#
 For the mscorlib; the base library the first tests are implemented in [nanoFramework.CoreLibrary.Tests](https://github.com/MatthiasJentsch/nanoFramework.Test/tree/master/nanoFramework.CoreLibrary.Tests). Each test assembly uses the [nanoFramework.Test.Engine](https://github.com/MatthiasJentsch/nanoFramework.Test/tree/master/nanoFramework.Test.Engine). The test assembly has the Main function and calls `TestManager.RunTests(Assembly.GetExecutingAssembly());`. That discovers all tests in the test assembly and executes them. The progress of the test execution will be reported via `Console.WriteLine` to a connected host computer.
 ### At the host computer - implemented in C# for .NET 4.7
