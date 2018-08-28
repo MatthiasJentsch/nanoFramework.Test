@@ -7,6 +7,7 @@
 using System;
 using System.Collections;
 using System.Reflection;
+using System.Threading;
 
 namespace nanoFramework.Test.Engine
 {
@@ -99,6 +100,9 @@ namespace nanoFramework.Test.Engine
 			{
 				return;
 			}
+
+			// wait 5 seconds to lets the listener establish the connection before outputting anything
+			Thread.Sleep(5000);
 
 			// iterate through all test class types and find the types that implements IAssemblyInitialize/IAssemblyCleanup
 			Type assemblyInitializeInstance = null;

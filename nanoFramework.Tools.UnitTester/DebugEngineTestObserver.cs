@@ -162,7 +162,7 @@ namespace nanoFramework.Tools.UnitTester
 	/// <summary>
 	/// The test observer class listens to the c_Monitor_Message's of the nanoFramework debugger and records the test results
 	/// </summary>
-	internal class TestObserver : MarshalByRefObject
+	internal class DebugEngineTestObserver : MarshalByRefObject
 	{
 		#region enumerations
 		/// <summary>
@@ -232,7 +232,7 @@ namespace nanoFramework.Tools.UnitTester
 		/// Constructor
 		/// </summary>
 		/// <param name="testAssemblies">The full paths to the test assemblies (the dll- or exe-files; not the pe-file</param>
-		internal TestObserver(IList<string> testAssemblies, IDictionary<string, DirectoryInfo> knownAssemblies)
+		internal DebugEngineTestObserver(IList<string> testAssemblies, IDictionary<string, DirectoryInfo> knownAssemblies)
 		{
 			_knownAssemblies = knownAssemblies;
 			AppDomain.CurrentDomain.ReflectionOnlyAssemblyResolve += ReflectionOnlyAssemblyResolve;

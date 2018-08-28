@@ -45,7 +45,7 @@ namespace nanoFramework.Tools.UnitTester
 				// execute the job
 				IList<UnitTestAssemblyResult> results = job.Execute(connectedDevices, testAssembliesDirectory.FullName);
 				// store the results
-				File.WriteAllText(Path.Combine(resultsDirectory.FullName, string.Concat(job.TestId, ".json")), JsonConvert.SerializeObject(results, Formatting.Indented));
+				File.WriteAllText(Path.Combine(resultsDirectory.FullName, string.Concat(DateTime.Now.ToString("yyyyMMddHHmmss"), "#", job.TestId, ".json")), JsonConvert.SerializeObject(results, Formatting.Indented));
 				// delete the job file
 				jobFile.Delete();
 			}

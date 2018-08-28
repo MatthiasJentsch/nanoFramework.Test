@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Ports;
 using System.Linq;
 using System.Threading;
 
@@ -92,11 +93,11 @@ namespace nanoFramework.Tools.UnitTester
 					case "ESP32_DEVKITC":
 						if (FirmwareImage == "latest")
 						{
-							new Esp32FirmwareFlasher(connectedDevice.FirmwareFlasherDirectory).FlashLatestFirmware(connectedDevice.Port);
+							//new Esp32FirmwareFlasher(connectedDevice.FirmwareFlasherDirectory).FlashLatestFirmware(connectedDevice.Port);
 						}
 						else
 						{
-							new Esp32FirmwareFlasher(connectedDevice.FirmwareFlasherDirectory).FlashFirmwareImage(connectedDevice.Port, FirmwareImage);
+							//new Esp32FirmwareFlasher(connectedDevice.FirmwareFlasherDirectory).FlashFirmwareImage(connectedDevice.Port, FirmwareImage);
 						}
 						break;
 					default:
@@ -162,8 +163,8 @@ namespace nanoFramework.Tools.UnitTester
 					}
 
 					// register the test observer
-					TestObserver observer = new TestObserver(new List<string>() { testLibraryExeFile.FullName }, knownAssemblies);
-					observer.ListenToDebugEngine(debugger);
+					//DebugEngineTestObserver observer = new DebugEngineTestObserver(new List<string>() { testLibraryExeFile.FullName }, knownAssemblies);
+					//observer.ListenToDebugEngine(debugger);
 
 					// deploy all assemblies to the device
 					if (!debugger.DeploymentExecute(binaries))
@@ -173,16 +174,20 @@ namespace nanoFramework.Tools.UnitTester
 
 					// disconnect and reconnect the nanoFramework debugger; that causes the nanoCLR to restart the CLR and executes the test assembly
 					debugger.Disconnect();
-					if (!debugger.Connect(connectedDevice.Port))
+					/*if (!debugger.Connect(connectedDevice.Port))
 					{
 						throw new IOException($"Reconnecting the debugger to device on {connectedDevice.Port} not possible");
-					}
+					}*/
+
+					// register the test observer
+					UartTestObserver observer = new UartTestObserver(new List<string>() { testLibraryExeFile.FullName }, knownAssemblies);
+					observer.ListenToUart(new SerialPort(connectedDevice.Port, 115200, Parity.None, 8, StopBits.One));
 
 					// wait until the tests has finished and add the first result to the results list
 					results.Add(observer.ObserveExecution().Result[0]);
 
 					// disconnect the debugger
-					debugger.Disconnect();
+					//debugger.Disconnect();
 				}
 
 				return results;
