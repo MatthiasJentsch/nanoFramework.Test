@@ -7,7 +7,7 @@ using nanoFramework.Test.Engine;
 
 namespace nanoFramework.CoreLibrary.Tests
 {
-	public class Operator : ITestClass
+	public class OperatorTests : ITestClass
 	{
 		public void Add()
 		{

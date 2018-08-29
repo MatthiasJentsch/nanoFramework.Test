@@ -5,9 +5,9 @@
 
 using nanoFramework.Test.Engine;
 
-namespace nanoFramework.CoreLibrary.Tests.System
+namespace nanoFramework.CoreLibrary.Tests.SystemTests
 {
-	public class String : ITestClass
+	public class StringTests : ITestClass
 	{
 		public void Constructor1()
 		{

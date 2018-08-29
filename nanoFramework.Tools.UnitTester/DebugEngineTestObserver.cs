@@ -31,9 +31,17 @@ namespace nanoFramework.Tools.UnitTester
 		/// </summary>
 		public Version TestAssemblyVersion { get; internal set; }
 		/// <summary>
+		/// The test execution time stamp
+		/// </summary>
+		public string TimeStamp { get; internal set; }
+		/// <summary>
+		/// The test assembly status
+		/// </summary>
+		public UnitTestStatus AssemblyStatus { get; internal set; }
+		/// <summary>
 		/// The list of class test results
 		/// </summary>
-		public List<UnitTestClassResult> Results { get; private set; }
+		public List<UnitTestClassResult> ClassResults { get; private set; }
 		/// <summary>
 		/// Overall execution time of all tests
 		/// </summary>
@@ -48,7 +56,8 @@ namespace nanoFramework.Tools.UnitTester
 		public UnitTestAssemblyResult(string testAssemblyName)
 		{
 			TestAssemblyName = testAssemblyName;
-			Results = new List<UnitTestClassResult>();
+			ClassResults = new List<UnitTestClassResult>();
+			AssemblyStatus = UnitTestStatus.Passed;
 		}
 		#endregion
 	}
@@ -64,9 +73,13 @@ namespace nanoFramework.Tools.UnitTester
 		/// </summary>
 		public string TestClassName { get; private set; }
 		/// <summary>
+		/// The test class status
+		/// </summary>
+		public UnitTestStatus ClassStatus { get; internal set; }
+		/// <summary>
 		/// The list of the single test results
 		/// </summary>
-		public List<UnitTestResult> Results { get; private set; }
+		public List<UnitTestResult> MethodResults { get; private set; }
 		/// <summary>
 		/// The overall test execution time of all tests of this class
 		/// </summary>
@@ -81,7 +94,8 @@ namespace nanoFramework.Tools.UnitTester
 		public UnitTestClassResult(string testClassName)
 		{
 			TestClassName = testClassName;
-			Results = new List<UnitTestResult>();
+			MethodResults = new List<UnitTestResult>();
+			ClassStatus = UnitTestStatus.Passed;
 		}
 		#endregion
 	}
@@ -331,12 +345,12 @@ namespace nanoFramework.Tools.UnitTester
 				foreach (MethodInfo method in TestManager.GetTestMethods(type, interfaces))
 				{
 					// add a new test result for the test method
-					classResult.Results.Add(new UnitTestResult(method.Name));
+					classResult.MethodResults.Add(new UnitTestResult(method.Name));
 				}
 				// add the new class result; only if min one test found
-				if (classResult.Results.Count > 0)
+				if (classResult.MethodResults.Count > 0)
 				{
-					results.Results.Add(classResult);
+					results.ClassResults.Add(classResult);
 				}
 			}
 			return results;
@@ -368,6 +382,7 @@ namespace nanoFramework.Tools.UnitTester
 							TicksPerMillisecond = decimal.Parse(match.Groups["ticksPerMillisecond"].ToString());
 							// activate the current results
 							_currentResult = _results.Where(allResults => allResults.TestAssemblyName == match.Groups["assemblyName"].ToString()).Single();
+							_currentResult.TimeStamp = DateTime.Now.ToString("g");
 							break;
 						// One test passed: Create the UnitTestResult
 						case MessageParsing.Passed:
@@ -402,15 +417,15 @@ namespace nanoFramework.Tools.UnitTester
 			if (result != null)
 			{
 				// find the class results
-				UnitTestClassResult classResult = _currentResult.Results.Where(entry => entry.TestClassName == className).FirstOrDefault();
+				UnitTestClassResult classResult = _currentResult.ClassResults.Where(entry => entry.TestClassName == className).FirstOrDefault();
 				// something went wrong if we don't find the test class in the results; maybe the pe-file doesn't match the corresponding dll/exe file
 				if (classResult == null)
 				{
 					throw new ArgumentException($"TestClass {className} not found in the test results");
 				}
 				// remove the placeholder result and add the current result
-				classResult.Results.RemoveAll(entry => entry.TestMethodName == result.TestMethodName);
-				classResult.Results.Add(result);
+				classResult.MethodResults.RemoveAll(entry => entry.TestMethodName == result.TestMethodName);
+				classResult.MethodResults.Add(result);
 				// cumulate the execution time to the class and the assembly
 				classResult.ExecutionDurationMilliseconds += result.ExecutionDurationMilliseconds;
 				_currentResult.ExecutionDurationMilliseconds += result.ExecutionDurationMilliseconds;

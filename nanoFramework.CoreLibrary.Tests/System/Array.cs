@@ -7,28 +7,28 @@ using nanoFramework.Test.Engine;
 using System;
 using System.Collections;
 
-namespace nanoFramework.CoreLibrary.Tests.System
+namespace nanoFramework.CoreLibrary.Tests.SystemTests
 {
-	public class Array : ITestClass
+	public class ArrayTests : ITestClass
 	{
 		public void BinarySearch1()
 		{
 			char[] o = new char[] { 'n', 'a', 'n', 'o', 'F', 'r', 'a', 'm', 'e', 'w', 'o', 'r', 'k' };
-			Assert.AreEqual(7, global::System.Array.BinarySearch(o, 'm', null));
-			Assert.AreEqual(-14, global::System.Array.BinarySearch(o, 'x', null));
+			Assert.AreEqual(7, Array.BinarySearch(o, 'm', null));
+			Assert.AreEqual(-14, Array.BinarySearch(o, 'x', null));
 		}
 
 		public void BinarySearch2()
 		{
 			char[] o = new char[] { 'n', 'a', 'n', 'o', 'F', 'r', 'a', 'm', 'e', 'w', 'o', 'r', 'k' };
-			Assert.AreEqual(-10, global::System.Array.BinarySearch(o, 9, 4, 'm', null));
-			Assert.AreEqual(7, global::System.Array.BinarySearch(o, 5, 4, 'm', null));
+			Assert.AreEqual(-10, Array.BinarySearch(o, 9, 4, 'm', null));
+			Assert.AreEqual(7, Array.BinarySearch(o, 5, 4, 'm', null));
 		}
 
 		public void Clear()
 		{
 			char[] o = new char[] { 'n', 'a', 'n', 'o', 'F', 'r', 'a', 'm', 'e', 'w', 'o', 'r', 'k' };
-			global::System.Array.Clear(o, 4, 5);
+			Array.Clear(o, 4, 5);
 			Assert.AreEqual(13, o.Length);
 			Assert.AreEqual('o', o[3]);
 			Assert.AreEqual(0, o[4]);
@@ -52,7 +52,7 @@ namespace nanoFramework.CoreLibrary.Tests.System
 		{
 			char[] o = new char[] { 'n', 'a', 'n', 'o', 'F', 'r', 'a', 'm', 'e', 'w', 'o', 'r', 'k' };
 			char[] c = new char[13];
-			global::System.Array.Copy(o, c, 3);
+			Array.Copy(o, c, 3);
 			Assert.AreEqual('n', c[2]);
 			Assert.AreEqual(0, c[3]);
 		}
@@ -61,7 +61,7 @@ namespace nanoFramework.CoreLibrary.Tests.System
 		{
 			char[] o = new char[] { 'n', 'a', 'n', 'o', 'F', 'r', 'a', 'm', 'e', 'w', 'o', 'r', 'k' };
 			char[] c = new char[13];
-			global::System.Array.Copy(o, 4, c, 2, 5);
+			Array.Copy(o, 4, c, 2, 5);
 			Assert.AreEqual(0, c[0]);
 			Assert.AreEqual(0, c[1]);
 			Assert.AreEqual('F', c[2]);
@@ -83,10 +83,10 @@ namespace nanoFramework.CoreLibrary.Tests.System
 
 		public void CreateInstance()
 		{
-			char[] o = (char[])global::System.Array.CreateInstance(typeof(char), 3);
+			char[] o = (char[])Array.CreateInstance(typeof(char), 3);
 			Assert.AreEqual(3, o.Length);
 			Assert.AreEqual(0, o[1]);
-			Exception[] e = (Exception[])global::System.Array.CreateInstance(typeof(Exception), 5);
+			Exception[] e = (Exception[])Array.CreateInstance(typeof(Exception), 5);
 			Assert.AreEqual(5, e.Length);
 			Assert.IsNull(e[3]);
 		}
@@ -121,23 +121,23 @@ namespace nanoFramework.CoreLibrary.Tests.System
 		public void IndexOf1()
 		{
 			char[] o = new char[] { 'n', 'a', 'n', 'o', 'F', 'r', 'a', 'm', 'e', 'w', 'o', 'r', 'k' };
-			Assert.AreEqual(3, global::System.Array.IndexOf(o, 'o'));
-			Assert.AreEqual(-1, global::System.Array.IndexOf(o, 'x'));
+			Assert.AreEqual(3, Array.IndexOf(o, 'o'));
+			Assert.AreEqual(-1, Array.IndexOf(o, 'x'));
 		}
 
 		public void IndexOf2()
 		{
 			char[] o = new char[] { 'n', 'a', 'n', 'o', 'F', 'r', 'a', 'm', 'e', 'w', 'o', 'r', 'k' };
-			Assert.AreEqual(4, global::System.Array.IndexOf(o, 'F', 3));
-			Assert.AreEqual(-1, global::System.Array.IndexOf(o, 'F', 5));
+			Assert.AreEqual(4, Array.IndexOf(o, 'F', 3));
+			Assert.AreEqual(-1, Array.IndexOf(o, 'F', 5));
 		}
 
 		public void IndexOf3()
 		{
 			char[] o = new char[] { 'n', 'a', 'n', 'o', 'F', 'r', 'a', 'm', 'e', 'w', 'o', 'r', 'k' };
-			Assert.AreEqual(1, global::System.Array.IndexOf(o, 'a', 0, 4));
-			Assert.AreEqual(6, global::System.Array.IndexOf(o, 'a', 4, 4));
-			Assert.AreEqual(-1, global::System.Array.IndexOf(o, 'a', 8, 4));
+			Assert.AreEqual(1, Array.IndexOf(o, 'a', 0, 4));
+			Assert.AreEqual(6, Array.IndexOf(o, 'a', 4, 4));
+			Assert.AreEqual(-1, Array.IndexOf(o, 'a', 8, 4));
 		}
 
 		public void IsFixed()

@@ -141,10 +141,10 @@ namespace nanoFramework.Tools.UnitTester
 		internal async Task<IList<UnitTestAssemblyResult>> ObserveExecution()
 		{
 			// wait for the semaphore and returns the results
-			bool test = await _waitForFinished.WaitAsync(3000000);
+			bool test = await _waitForFinished.WaitAsync(30000);
 			if (!test)
 			{
-				throw new TimeoutException();
+				//throw new TimeoutException();
 			}
 			return _results;
 		}
@@ -194,12 +194,12 @@ namespace nanoFramework.Tools.UnitTester
 				foreach (MethodInfo method in TestManager.GetTestMethods(type, interfaces))
 				{
 					// add a new test result for the test method
-					classResult.Results.Add(new UnitTestResult(method.Name));
+					classResult.MethodResults.Add(new UnitTestResult(method.Name));
 				}
 				// add the new class result; only if min one test found
-				if (classResult.Results.Count > 0)
+				if (classResult.MethodResults.Count > 0)
 				{
-					results.Results.Add(classResult);
+					results.ClassResults.Add(classResult);
 				}
 			}
 			return results;
@@ -274,15 +274,20 @@ namespace nanoFramework.Tools.UnitTester
 				if (result != null)
 				{
 					// find the class results
-					UnitTestClassResult classResult = _currentResult.Results.Where(entry => entry.TestClassName == className).FirstOrDefault();
+					UnitTestClassResult classResult = _currentResult.ClassResults.Where(entry => entry.TestClassName == className).FirstOrDefault();
 					// something went wrong if we don't find the test class in the results; maybe the pe-file doesn't match the corresponding dll/exe file
 					if (classResult == null)
 					{
 						throw new ArgumentException($"TestClass {className} not found in the test results");
 					}
 					// remove the placeholder result and add the current result
-					classResult.Results.RemoveAll(entry => entry.TestMethodName == result.TestMethodName);
-					classResult.Results.Add(result);
+					classResult.MethodResults.RemoveAll(entry => entry.TestMethodName == result.TestMethodName);
+					classResult.MethodResults.Add(result);
+					if (result.TestStatus == UnitTestStatus.Failed)
+					{
+						classResult.ClassStatus = UnitTestStatus.Failed;
+						_currentResult.AssemblyStatus = UnitTestStatus.Failed;
+					}
 					// cumulate the execution time to the class and the assembly
 					classResult.ExecutionDurationMilliseconds += result.ExecutionDurationMilliseconds;
 					_currentResult.ExecutionDurationMilliseconds += result.ExecutionDurationMilliseconds;
