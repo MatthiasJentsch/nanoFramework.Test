@@ -157,24 +157,24 @@ namespace nanoFramework.Tools.UnitTester
 					}
 
 					// connect the nanoFramework debugger to the device
-					if (!debugger.Connect(connectedDevice.Port))
+					/*if (!debugger.Connect(connectedDevice.Port))
 					{
 						throw new IOException($"Connecting the debugger to device on {connectedDevice.Port} not possible");
-					}
+					}*/
 
 					// register the test observer
-					//DebugEngineTestObserver observer = new DebugEngineTestObserver(new List<string>() { testLibraryExeFile.FullName }, knownAssemblies);
-					//observer.ListenToDebugEngine(debugger);
+					/*DebugEngineTestObserver observer = new DebugEngineTestObserver(new List<string>() { testLibraryExeFile.FullName }, knownAssemblies);
+					observer.ListenToDebugEngine(debugger);*/
 
 					// deploy all assemblies to the device
-					if (!debugger.DeploymentExecute(binaries))
+					/*if (!debugger.DeploymentExecute(binaries))
 					{
 						throw new IOException($"Deploying the assemblies to device on {connectedDevice.Port} not possible");
-					}
+					}*/
 
 					// disconnect and reconnect the nanoFramework debugger; that causes the nanoCLR to restart the CLR and executes the test assembly
-					debugger.Disconnect();
-					/*if (!debugger.Connect(connectedDevice.Port))
+					/*debugger.Disconnect();
+					if (!debugger.Connect(connectedDevice.Port))
 					{
 						throw new IOException($"Reconnecting the debugger to device on {connectedDevice.Port} not possible");
 					}*/

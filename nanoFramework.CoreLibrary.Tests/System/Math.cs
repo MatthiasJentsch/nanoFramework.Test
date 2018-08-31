@@ -224,9 +224,9 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 
 		public void SignFloat()
 		{
-			Assert.AreEqual(-1, Math.Sign(-8.15));
-			Assert.AreEqual(0, Math.Sign(0));
-			Assert.AreEqual(1, Math.Sign(47.11));
+			Assert.AreEqual(-1, Math.Sign(-8.15f));
+			Assert.AreEqual(0, Math.Sign(0f));
+			Assert.AreEqual(1, Math.Sign(47.11f));
 		}
 
 		public void SinDouble()

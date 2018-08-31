@@ -102,7 +102,17 @@ namespace nanoFramework.Test.Engine
 			}
 
 			// wait 5 seconds to lets the listener establish the connection before outputting anything
-			Thread.Sleep(5000);
+			Console.Write("5.");
+			Thread.Sleep(1000);
+			Console.Write("4.");
+			Thread.Sleep(1000);
+			Console.Write("3.");
+			Thread.Sleep(1000);
+			Console.Write("2.");
+			Thread.Sleep(1000);
+			Console.Write("1.");
+			Thread.Sleep(1000);
+			Console.WriteLine(" - GO!");
 
 			// iterate through all test class types and find the types that implements IAssemblyInitialize/IAssemblyCleanup
 			Type assemblyInitializeInstance = null;
@@ -148,6 +158,8 @@ namespace nanoFramework.Test.Engine
 			foreach (DictionaryEntry entry in testClassTypes)
 			{
 				RunTests((Type)entry.Key, (Type[])entry.Value);
+				// Wait a second to let all the output flow to the listening host
+				Thread.Sleep(1000);
 			}
 
 			// execute the AssemblyCleanup method

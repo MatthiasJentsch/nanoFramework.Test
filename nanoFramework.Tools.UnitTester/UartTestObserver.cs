@@ -141,7 +141,7 @@ namespace nanoFramework.Tools.UnitTester
 		internal async Task<IList<UnitTestAssemblyResult>> ObserveExecution()
 		{
 			// wait for the semaphore and returns the results
-			bool test = await _waitForFinished.WaitAsync(30000);
+			bool test = await _waitForFinished.WaitAsync(120000);
 			if (!test)
 			{
 				//throw new TimeoutException();
