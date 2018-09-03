@@ -26,7 +26,6 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.GlobalizationTests
 		{
 			CultureInfo ci = CultureInfo.CurrentUICulture;
 			Assert.IsNotNull(ci);
-			Assert.IsTrue(ci.ToString().Length > 0);
 		}
 
 		public void DateTimeFormat()

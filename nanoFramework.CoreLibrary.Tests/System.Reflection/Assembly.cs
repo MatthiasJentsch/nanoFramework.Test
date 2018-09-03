@@ -23,13 +23,13 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.ReflectionTests
 		{
 			Assembly a = Assembly.GetExecutingAssembly();
 			Assert.IsNotNull(a);
-			Assert.AreEqual(this.GetType().Assembly, a);
+			Assert.AreEqual(GetType().Assembly, a);
 			Assert.AreNotEqual(typeof(ITestClass).Assembly, a);
 		}
 
 		public void GetName()
 		{
-			Assembly a = Assembly.GetExecutingAssembly();
+			Assembly a = Assembly.GetAssembly(GetType());
 			AssemblyName n = a.GetName();
 			Assert.IsNotNull(n);
 			Assert.IsTrue(n.ToString().IndexOf("CoreLibrary") >= 0);
