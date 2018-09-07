@@ -8,21 +8,65 @@ using System;
 
 namespace nanoFramework.CoreLibrary.Tests.SystemTests
 {
-	public class MathTests : ITestClass
+	public class MathTests : ITestClass, ITestInitialize
 	{
 		private const int MaxIntValueDifferenceDouble = 10;
 		private const int MaxIntValueDifferenceFloat = 10;
 
+		private bool floatImplemented = false;
+		private bool doubleImplemented = false;
+
+		public void TestInitialize()
+		{
+			try
+			{
+				Math.Abs(-0.3);
+				doubleImplemented = true;
+			}
+			catch (NotImplementedException) { }
+			try
+			{
+				Math.Abs(-0.3f);
+				floatImplemented = true;
+			}
+			catch (NotImplementedException) { }
+
+			if (!floatImplemented && !doubleImplemented)
+			{
+				throw new NotSupportedException();
+			}
+		}
+
 		public void AbsDouble()
 		{
-			AssertIsDoubleCloseEnough(815.4711, Math.Abs(815.4711));
-			AssertIsDoubleCloseEnough(815.4711, Math.Abs(-815.4711));
+			try
+			{
+				AssertIsDoubleCloseEnough(815.4711, Math.Abs(815.4711));
+				AssertIsDoubleCloseEnough(815.4711, Math.Abs(-815.4711));
+			}
+			catch (NotImplementedException)
+			{
+				if (doubleImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void AbsFloat()
 		{
-			AssertIsFloatCloseEnough(815.4711f, Math.Abs(815.4711f));
-			AssertIsFloatCloseEnough(815.4711f, Math.Abs(-815.4711f));
+			try
+			{
+				AssertIsFloatCloseEnough(815.4711f, Math.Abs(815.4711f));
+				AssertIsFloatCloseEnough(815.4711f, Math.Abs(-815.4711f));
+			}
+			catch (NotImplementedException)
+			{
+				if (floatImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void AbsInt32()
@@ -33,132 +77,392 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 
 		public void AcosDouble()
 		{
-			AssertIsDoubleCloseEnough(1.0801665132267018391887988383441, Math.Acos(0.4711815));
+			try
+			{
+				AssertIsDoubleCloseEnough(1.0801665132267018391887988383441, Math.Acos(0.4711815));
+			}
+			catch (NotImplementedException)
+			{
+				if (doubleImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void AcosFloat()
 		{
-			AssertIsFloatCloseEnough(1.0801665132267018391887988383441f, (float)Math.Acos(0.4711815f));
+			try
+			{
+				AssertIsFloatCloseEnough(1.0801665132267018391887988383441f, (float)Math.Acos(0.4711815f));
+			}
+			catch (NotImplementedException)
+			{
+				if (floatImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void AsinDouble()
 		{
-			AssertIsDoubleCloseEnough(0.4906298135681947800425228532957, Math.Asin(0.4711815));
+			try
+			{
+				AssertIsDoubleCloseEnough(0.4906298135681947800425228532957, Math.Asin(0.4711815));
+			}
+			catch (NotImplementedException)
+			{
+				if (doubleImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void AsinFloat()
 		{
-			AssertIsFloatCloseEnough(0.4906298135681947800425228532957f, (float)Math.Asin(0.4711815f));
+			try
+			{
+				AssertIsFloatCloseEnough(0.4906298135681947800425228532957f, (float)Math.Asin(0.4711815f));
+			}
+			catch (NotImplementedException)
+			{
+				if (floatImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void AtanDouble()
 		{
-			AssertIsDoubleCloseEnough(0.44032817575325219404857976978333, Math.Atan(0.4711815));
+			try
+			{
+				AssertIsDoubleCloseEnough(0.44032817575325219404857976978333, Math.Atan(0.4711815));
+			}
+			catch (NotImplementedException)
+			{
+				if (doubleImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void AtanFloat()
 		{
-			AssertIsFloatCloseEnough(0.44032817575325219404857976978333f, (float)Math.Atan(0.4711815f));
+			try
+			{
+				AssertIsFloatCloseEnough(0.44032817575325219404857976978333f, (float)Math.Atan(0.4711815f));
+			}
+			catch (NotImplementedException)
+			{
+				if (floatImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void Atan2Double()
 		{
-			AssertIsDoubleCloseEnough(0.17132086544315422, Math.Atan2(815.1, 4711.1));
+			try
+			{
+				AssertIsDoubleCloseEnough(0.17132086544315422, Math.Atan2(815.1, 4711.1));
+			}
+			catch (NotImplementedException)
+			{
+				if (doubleImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void Atan2Float()
 		{
-			AssertIsFloatCloseEnough(0.17132086544315422f, (float)Math.Atan2(815.1f, 4711.1f));
+			try
+			{
+				AssertIsFloatCloseEnough(0.17132086544315422f, (float)Math.Atan2(815.1f, 4711.1f));
+			}
+			catch (NotImplementedException)
+			{
+				if (floatImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void CeilingDouble()
 		{
-			AssertIsDoubleCloseEnough(4712, Math.Ceiling(4711.815));
+			try
+			{
+				AssertIsDoubleCloseEnough(4712, Math.Ceiling(4711.815));
+			}
+			catch (NotImplementedException)
+			{
+				if (doubleImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void CeilingFloat()
 		{
-			AssertIsFloatCloseEnough(4712f, (float)Math.Ceiling(4711.815f));
+			try
+			{
+				AssertIsFloatCloseEnough(4712f, (float)Math.Ceiling(4711.815f));
+			}
+			catch (NotImplementedException)
+			{
+				if (floatImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void CosDouble()
 		{
-			AssertIsDoubleCloseEnough(0.83974636838455308, Math.Cos(4711.815));
+			try
+			{
+				AssertIsDoubleCloseEnough(0.83974636838455308, Math.Cos(4711.815));
+			}
+			catch (NotImplementedException)
+			{
+				if (doubleImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void CosFloat()
 		{
-			AssertIsFloatCloseEnough(0.8397145f, (float)Math.Cos(4711.815f));
+			try
+			{
+				AssertIsFloatCloseEnough(0.8397145f, (float)Math.Cos(4711.815f));
+			}
+			catch (NotImplementedException)
+			{
+				if (floatImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void CoshDouble()
 		{
-			AssertIsDoubleCloseEnough(55.631445525388421244878354021623, Math.Cosh(4.711815));
+			try
+			{
+				AssertIsDoubleCloseEnough(55.631445525388421244878354021623, Math.Cosh(4.711815));
+			}
+			catch (NotImplementedException)
+			{
+				if (doubleImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void CoshFloat()
 		{
-			AssertIsFloatCloseEnough(55.631445525388421244878354021623f, (float)Math.Cosh(4.711815f));
+			try
+			{
+				AssertIsFloatCloseEnough(55.631445525388421244878354021623f, (float)Math.Cosh(4.711815f));
+			}
+			catch (NotImplementedException)
+			{
+				if (floatImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void ExpDouble()
 		{
-			AssertIsDoubleCloseEnough(111.25390260204280555587401815578, Math.Exp(4.711815));
+			try
+			{
+				AssertIsDoubleCloseEnough(111.25390260204280555587401815578, Math.Exp(4.711815));
+			}
+			catch (NotImplementedException)
+			{
+				if (doubleImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void ExpFloat()
 		{
-			AssertIsFloatCloseEnough(111.253891f, (float)Math.Exp(4.711815f));
+			try
+			{
+				AssertIsFloatCloseEnough(111.253891f, (float)Math.Exp(4.711815f));
+			}
+			catch (NotImplementedException)
+			{
+				if (floatImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void FloorDouble()
 		{
-			AssertIsDoubleCloseEnough(4711, Math.Floor(4711.815));
+			try
+			{
+				AssertIsDoubleCloseEnough(4711, Math.Floor(4711.815));
+			}
+			catch (NotImplementedException)
+			{
+				if (doubleImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void FloorFloat()
 		{
-			AssertIsFloatCloseEnough(4711f, (float)Math.Floor(4711.815f));
+			try
+			{
+				AssertIsFloatCloseEnough(4711f, (float)Math.Floor(4711.815f));
+			}
+			catch (NotImplementedException)
+			{
+				if (floatImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void IEEERemainderDouble()
 		{
-			AssertIsDoubleCloseEnough(-181.01160000000027, Math.IEEERemainder(4711.815, 815.4711));
+			try
+			{
+				AssertIsDoubleCloseEnough(-181.01160000000027, Math.IEEERemainder(4711.815, 815.4711));
+			}
+			catch (NotImplementedException)
+			{
+				if (doubleImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void IEEERemainderFloat()
 		{
-			AssertIsFloatCloseEnough(-181.011841f, (float)Math.IEEERemainder(4711.815f, 815.4711f));
+			try
+			{
+				AssertIsFloatCloseEnough(-181.011841f, (float)Math.IEEERemainder(4711.815f, 815.4711f));
+			}
+			catch (NotImplementedException)
+			{
+				if (floatImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void LogDouble()
 		{
-			AssertIsDoubleCloseEnough(8.4578284631005687, Math.Log(4711.815));
+			try
+			{
+				AssertIsDoubleCloseEnough(8.4578284631005687, Math.Log(4711.815));
+			}
+			catch (NotImplementedException)
+			{
+				if (doubleImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void LogFloat()
 		{
-			AssertIsFloatCloseEnough(8.4578284631005687f, (float)Math.Log(4711.815f));
+			try
+			{
+				AssertIsFloatCloseEnough(8.4578284631005687f, (float)Math.Log(4711.815f));
+			}
+			catch (NotImplementedException)
+			{
+				if (floatImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void Log10Double()
 		{
-			AssertIsDoubleCloseEnough(3.6731882304088384851672447367624, Math.Log10(4711.815));
+			try
+			{
+				AssertIsDoubleCloseEnough(3.6731882304088384851672447367624, Math.Log10(4711.815));
+			}
+			catch (NotImplementedException)
+			{
+				if (doubleImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void Log10Float()
 		{
-			AssertIsFloatCloseEnough(3.6731882304088384851672447367624f, (float)Math.Log10(4711.815f));
+			try
+			{
+				AssertIsFloatCloseEnough(3.6731882304088384851672447367624f, (float)Math.Log10(4711.815f));
+			}
+			catch (NotImplementedException)
+			{
+				if (floatImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void MaxDouble()
 		{
-			AssertIsDoubleCloseEnough(815.4711, Math.Max(-4711.815, 815.4711));
+			try
+			{
+				AssertIsDoubleCloseEnough(815.4711, Math.Max(-4711.815, 815.4711));
+			}
+			catch (NotImplementedException)
+			{
+				if (doubleImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void MaxFloat()
 		{
-			AssertIsFloatCloseEnough(815.4711f, (float)Math.Max(-4711.815f, 815.4711f));
+			try
+			{
+				AssertIsFloatCloseEnough(815.4711f, (float)Math.Max(-4711.815f, 815.4711f));
+			}
+			catch (NotImplementedException)
+			{
+				if (floatImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void MaxInt32()
@@ -168,12 +472,32 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 
 		public void MinDouble()
 		{
-			AssertIsDoubleCloseEnough(-4711.815, Math.Min(-4711.815, 815.4711));
+			try
+			{
+				AssertIsDoubleCloseEnough(-4711.815, Math.Min(-4711.815, 815.4711));
+			}
+			catch (NotImplementedException)
+			{
+				if (doubleImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void MinFloat()
 		{
-			AssertIsFloatCloseEnough(-4711.815f, (float)Math.Min(-4711.815f, 815.4711f));
+			try
+			{
+				AssertIsFloatCloseEnough(-4711.815f, (float)Math.Min(-4711.815f, 815.4711f));
+			}
+			catch (NotImplementedException)
+			{
+				if (floatImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void MinInt32()
@@ -183,112 +507,292 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 
 		public void PowDouble()
 		{
-			AssertIsDoubleCloseEnough(43238617505380.005785314240004362, Math.Pow(47.11, 8.15));
+			try
+			{
+				AssertIsDoubleCloseEnough(43238617505380.005785314240004362, Math.Pow(47.11, 8.15));
+			}
+			catch (NotImplementedException)
+			{
+				if (doubleImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void PowFloat()
 		{
-			AssertIsFloatCloseEnough(4.323856E+13f, (float)Math.Pow(47.11f, 8.15f));
+			try
+			{
+				AssertIsFloatCloseEnough(4.323856E+13f, (float)Math.Pow(47.11f, 8.15f));
+			}
+			catch (NotImplementedException)
+			{
+				if (floatImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void RoundDouble()
 		{
-			AssertIsDoubleCloseEnough(-8, Math.Round(-8.15));
-			AssertIsDoubleCloseEnough(-9, Math.Round(-8.65));
-			AssertIsDoubleCloseEnough(-8, Math.Round(-8.5));
-			AssertIsDoubleCloseEnough(-10, Math.Round(-9.5));
-			AssertIsDoubleCloseEnough(47, Math.Round(47.11));
-			AssertIsDoubleCloseEnough(48, Math.Round(47.93));
-			AssertIsDoubleCloseEnough(48, Math.Round(47.5));
-			AssertIsDoubleCloseEnough(50, Math.Round(50.5));
+			try
+			{
+				AssertIsDoubleCloseEnough(-8, Math.Round(-8.15));
+				AssertIsDoubleCloseEnough(-9, Math.Round(-8.65));
+				AssertIsDoubleCloseEnough(-8, Math.Round(-8.5));
+				AssertIsDoubleCloseEnough(-10, Math.Round(-9.5));
+				AssertIsDoubleCloseEnough(47, Math.Round(47.11));
+				AssertIsDoubleCloseEnough(48, Math.Round(47.93));
+				AssertIsDoubleCloseEnough(48, Math.Round(47.5));
+				AssertIsDoubleCloseEnough(50, Math.Round(50.5));
+			}
+			catch (NotImplementedException)
+			{
+				if (doubleImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void RoundFloat()
 		{
-			AssertIsFloatCloseEnough(-8f, (float)Math.Round(-8.15f));
-			AssertIsFloatCloseEnough(-9f, (float)Math.Round(-8.65f));
-			AssertIsFloatCloseEnough(-8f, (float)Math.Round(-8.5f));
-			AssertIsFloatCloseEnough(-10f, (float)Math.Round(-9.5f));
-			AssertIsFloatCloseEnough(47f, (float)Math.Round(47.11f));
-			AssertIsFloatCloseEnough(48f, (float)Math.Round(47.93f));
-			AssertIsFloatCloseEnough(48f, (float)Math.Round(47.5f));
-			AssertIsFloatCloseEnough(50f, (float)Math.Round(50.5f));
+			try
+			{
+				AssertIsFloatCloseEnough(-8f, (float)Math.Round(-8.15f));
+				AssertIsFloatCloseEnough(-9f, (float)Math.Round(-8.65f));
+				AssertIsFloatCloseEnough(-8f, (float)Math.Round(-8.5f));
+				AssertIsFloatCloseEnough(-10f, (float)Math.Round(-9.5f));
+				AssertIsFloatCloseEnough(47f, (float)Math.Round(47.11f));
+				AssertIsFloatCloseEnough(48f, (float)Math.Round(47.93f));
+				AssertIsFloatCloseEnough(48f, (float)Math.Round(47.5f));
+				AssertIsFloatCloseEnough(50f, (float)Math.Round(50.5f));
+			}
+			catch (NotImplementedException)
+			{
+				if (floatImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void SignDouble()
 		{
-			Assert.AreEqual(-1, Math.Sign(-8.15));
-			Assert.AreEqual(0, Math.Sign(0));
-			Assert.AreEqual(1, Math.Sign(47.11));
+			try
+			{
+				Assert.AreEqual(-1, Math.Sign(-8.15));
+				Assert.AreEqual(0, Math.Sign(0));
+				Assert.AreEqual(1, Math.Sign(47.11));
+			}
+			catch (NotImplementedException)
+			{
+				if (doubleImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void SignFloat()
 		{
-			Assert.AreEqual(-1, Math.Sign(-8.15f));
-			Assert.AreEqual(0, Math.Sign(0f));
-			Assert.AreEqual(1, Math.Sign(47.11f));
+			try
+			{
+				Assert.AreEqual(-1, Math.Sign(-8.15f));
+				Assert.AreEqual(0, Math.Sign(0f));
+				Assert.AreEqual(1, Math.Sign(47.11f));
+			}
+			catch (NotImplementedException)
+			{
+				if (floatImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void SinDouble()
 		{
-			AssertIsDoubleCloseEnough(-0.54297885482305341, Math.Sin(4711.815));
+			try
+			{
+				AssertIsDoubleCloseEnough(-0.54297885482305341, Math.Sin(4711.815));
+			}
+			catch (NotImplementedException)
+			{
+				if (doubleImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void SinFloat()
 		{
-			AssertIsFloatCloseEnough(-0.543028057f, (float)Math.Sin(4711.815f));
+			try
+			{
+				AssertIsFloatCloseEnough(-0.543028057f, (float)Math.Sin(4711.815f));
+			}
+			catch (NotImplementedException)
+			{
+				if (floatImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void SinhDouble()
 		{
-			AssertIsDoubleCloseEnough(55.622457076654384310995664134154, Math.Sinh(4.711815));
+			try
+			{
+				AssertIsDoubleCloseEnough(55.622457076654384310995664134154, Math.Sinh(4.711815));
+			}
+			catch (NotImplementedException)
+			{
+				if (doubleImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void SinhFloat()
 		{
-			AssertIsFloatCloseEnough(55.622457076654384310995664134154f, (float)Math.Sinh(4.711815f));
+			try
+			{
+				AssertIsFloatCloseEnough(55.622457076654384310995664134154f, (float)Math.Sinh(4.711815f));
+			}
+			catch (NotImplementedException)
+			{
+				if (floatImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void SqrtDouble()
 		{
-			AssertIsDoubleCloseEnough(68.642661661680922904331726478901, Math.Sqrt(4711.815));
+			try
+			{
+				AssertIsDoubleCloseEnough(68.642661661680922904331726478901, Math.Sqrt(4711.815));
+			}
+			catch (NotImplementedException)
+			{
+				if (doubleImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void SqrtFloat()
 		{
-			AssertIsFloatCloseEnough(68.642661661680922904331726478901f, (float)Math.Sqrt(4711.815f));
+			try
+			{
+				AssertIsFloatCloseEnough(68.642661661680922904331726478901f, (float)Math.Sqrt(4711.815f));
+			}
+			catch (NotImplementedException)
+			{
+				if (floatImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void TanDouble()
 		{
-			AssertIsDoubleCloseEnough(-0.64659863414187679, Math.Tan(4711.815));
+			try
+			{
+				AssertIsDoubleCloseEnough(-0.64659863414187679, Math.Tan(4711.815));
+			}
+			catch (NotImplementedException)
+			{
+				if (doubleImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void TanFloat()
 		{
-			AssertIsFloatCloseEnough(-0.6466817f, (float)Math.Tan(4711.815f));
+			try
+			{
+				AssertIsFloatCloseEnough(-0.6466817f, (float)Math.Tan(4711.815f));
+			}
+			catch (NotImplementedException)
+			{
+				if (floatImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void TanhDouble()
 		{
-			AssertIsDoubleCloseEnough(0.99983842863241914337923439329847, Math.Tanh(4.711815));
+			try
+			{
+				AssertIsDoubleCloseEnough(0.99983842863241914337923439329847, Math.Tanh(4.711815));
+			}
+			catch (NotImplementedException)
+			{
+				if (doubleImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void TanhFloat()
 		{
-			AssertIsFloatCloseEnough(0.99983842863241914337923439329847f, (float)Math.Tanh(4.711815f));
+			try
+			{
+				AssertIsFloatCloseEnough(0.99983842863241914337923439329847f, (float)Math.Tanh(4.711815f));
+			}
+			catch (NotImplementedException)
+			{
+				if (floatImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void TruncateDouble()
 		{
-			AssertIsDoubleCloseEnough(4711, Math.Truncate(4711.815));
-			AssertIsDoubleCloseEnough(-815, Math.Truncate(-815.4711));
+			try
+			{
+				AssertIsDoubleCloseEnough(4711, Math.Truncate(4711.815));
+				AssertIsDoubleCloseEnough(-815, Math.Truncate(-815.4711));
+			}
+			catch (NotImplementedException)
+			{
+				if (doubleImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		public void TruncateFloat()
 		{
-			AssertIsFloatCloseEnough(4711f, (float)Math.Truncate(4711.815f));
-			AssertIsFloatCloseEnough(-815f, (float)Math.Truncate(-815.4711f));
+			try
+			{
+				AssertIsFloatCloseEnough(4711f, (float)Math.Truncate(4711.815f));
+				AssertIsFloatCloseEnough(-815f, (float)Math.Truncate(-815.4711f));
+			}
+			catch (NotImplementedException)
+			{
+				if (floatImplemented)
+				{
+					throw;
+				}
+			}
 		}
 
 		private void AssertIsDoubleCloseEnough(double value1, double value2)

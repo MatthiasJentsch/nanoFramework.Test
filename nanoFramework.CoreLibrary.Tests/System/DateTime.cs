@@ -305,7 +305,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 		public void UtcNow()
 		{
 			DateTime dt1 = DateTime.UtcNow;
-			Thread.Sleep(10);
+			Thread.Sleep(1000);
 			DateTime dt2 = DateTime.UtcNow;
 			Assert.IsTrue(dt2 > dt1);
 		}
