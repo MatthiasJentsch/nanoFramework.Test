@@ -11,18 +11,20 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 {
 	public class ArrayTests : ITestClass
 	{
+		private readonly IComparer _charComparer = new CharComparer();
+
 		public void BinarySearch1()
 		{
 			char[] o = new char[] { 'n', 'a', 'n', 'o', 'F', 'r', 'a', 'm', 'e', 'w', 'o', 'r', 'k' };
-			Assert.AreEqual(7, Array.BinarySearch(o, 'm', null));
-			Assert.AreEqual(-14, Array.BinarySearch(o, 'x', null));
+			Assert.AreEqual(7, Array.BinarySearch(o, 'm', _charComparer));
+			Assert.AreEqual(-14, Array.BinarySearch(o, 'x', _charComparer));
 		}
 
 		public void BinarySearch2()
 		{
 			char[] o = new char[] { 'n', 'a', 'n', 'o', 'F', 'r', 'a', 'm', 'e', 'w', 'o', 'r', 'k' };
-			Assert.AreEqual(-10, Array.BinarySearch(o, 9, 4, 'm', null));
-			Assert.AreEqual(7, Array.BinarySearch(o, 5, 4, 'm', null));
+			Assert.AreEqual(-10, Array.BinarySearch(o, 9, 4, 'm', _charComparer));
+			Assert.AreEqual(7, Array.BinarySearch(o, 5, 4, 'm', _charComparer));
 		}
 
 		public void Clear()

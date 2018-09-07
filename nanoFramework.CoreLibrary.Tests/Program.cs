@@ -5,6 +5,7 @@
 
 using nanoFramework.Test.Engine;
 using System;
+using System.Collections;
 using System.Reflection;
 
 namespace nanoFramework.CoreLibrary.Tests
@@ -56,4 +57,14 @@ namespace nanoFramework.CoreLibrary.Tests
 	public enum TestType10 { }
 	internal class TestType11 { }
 	public struct TestType12 { }
+
+	public class CharComparer : IComparer
+	{
+		public int Compare(object x, object y)
+		{
+			char cx = (char)x;
+			char cy = (char)y;
+			return cx < cy ? -1 : cx > cy ? 1 : 0;
+		}
+	}
 }

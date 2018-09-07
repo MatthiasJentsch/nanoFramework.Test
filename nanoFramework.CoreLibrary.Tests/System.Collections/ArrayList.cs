@@ -12,6 +12,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.CollectionsTests
 	public class ArrayListTests : ITestClass, ITestInitialize
 	{
 		private ArrayList _theList = null;
+		private readonly IComparer _charComparer = new CharComparer();
 
 		public void TestInitialize()
 		{
@@ -44,8 +45,8 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.CollectionsTests
 			a.Add('n');
 			a.Add('n');
 			a.Add('o');
-			Assert.AreEqual(3, a.BinarySearch('o', null));
-			Assert.AreEqual(-1, a.BinarySearch('A', null));
+			Assert.AreEqual(3, a.BinarySearch('o', _charComparer));
+			Assert.AreEqual(-1, a.BinarySearch('A', _charComparer));
 		}
 
 		public void Clear()
