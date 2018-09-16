@@ -32,7 +32,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.ReflectionTests
 			Assembly a = Assembly.GetAssembly(GetType());
 			AssemblyName n = a.GetName();
 			Assert.IsNotNull(n);
-			Assert.IsTrue(n.ToString().IndexOf("CoreLibrary") >= 0);
+			Assert.IsTrue(n.FullName.IndexOf("CoreLibrary") >= 0);
 		}
 
 		public void GetSatelliteAssembly()
