@@ -239,6 +239,7 @@ namespace nanoFramework.Tools.UnitTester
 								TicksPerMillisecond = decimal.Parse(match.Groups["ticksPerMillisecond"].ToString());
 								// activate the current results
 								_currentResult = _results.Where(allResults => allResults.TestAssemblyName == match.Groups["assemblyName"].ToString()).Single();
+								_currentResult.TimeStamp = DateTime.Now.ToString(new System.Globalization.CultureInfo("en-US"));
 								break;
 							// One test passed: Create the UnitTestResult
 							case MessageParsing.Passed:
