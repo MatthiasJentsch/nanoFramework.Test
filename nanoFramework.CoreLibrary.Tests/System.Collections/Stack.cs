@@ -8,10 +8,12 @@ using System.Collections;
 
 namespace nanoFramework.CoreLibrary.Tests.SystemTests.CollectionsTests
 {
-	public class StackTests : ITestClass, ITestInitialize
+	[TestClass]
+	public class StackTests
 	{
 		private Stack _theStack = null;
 
+		[TestInitialize]
 		public void TestInitialize()
 		{
 			_theStack = new Stack();
@@ -30,12 +32,14 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.CollectionsTests
 			_theStack.Push('k');
 		}
 
+		[TestMethod]
 		public void Clear()
 		{
 			_theStack.Clear();
 			Assert.AreEqual(0, _theStack.Count);
 		}
 
+		[TestMethod]
 		public void Clone()
 		{
 			Stack c = _theStack.Clone() as Stack;
@@ -43,12 +47,14 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.CollectionsTests
 			Assert.AreEqual(13, c.Count);
 		}
 
+		[TestMethod]
 		public void Contains()
 		{
 			Assert.IsTrue(_theStack.Contains('F'));
 			Assert.IsFalse(_theStack.Contains('A'));
 		}
 
+		[TestMethod]
 		public void CopyTo()
 		{
 			char[] c = new char[15];
@@ -60,6 +66,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.CollectionsTests
 			Assert.AreEqual('F', c[10]);
 		}
 
+		[TestMethod]
 		public void GetEnumerator()
 		{
 			IEnumerator e = _theStack.GetEnumerator();
@@ -86,6 +93,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.CollectionsTests
 			Assert.AreEqual('k', e.Current);
 		}
 
+		[TestMethod]
 		public void Peek()
 		{
 			object x = _theStack.Peek();
@@ -94,6 +102,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.CollectionsTests
 			Assert.AreEqual(13, _theStack.Count);
 		}
 
+		[TestMethod]
 		public void Pop()
 		{
 			object x = _theStack.Pop();
@@ -102,12 +111,14 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.CollectionsTests
 			Assert.AreEqual(12, _theStack.Count);
 		}
 
+		[TestMethod]
 		public void Push()
 		{
 			_theStack.Push('!');
 			Assert.AreEqual(14, _theStack.Count);
 		}
-		
+
+		[TestMethod]
 		public void ToArray()
 		{
 			object[] a = _theStack.ToArray();
@@ -116,11 +127,13 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.CollectionsTests
 			Assert.AreEqual('n', a[12]);
 		}
 
+		[TestMethod]
 		public void Count()
 		{
 			Assert.AreEqual(13, _theStack.Count);
 		}
 
+		[TestMethod]
 		public void IsSynchronized()
 		{
 			Assert.IsFalse(_theStack.IsSynchronized);

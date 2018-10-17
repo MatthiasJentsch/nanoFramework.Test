@@ -8,8 +8,10 @@ using System.Text;
 
 namespace nanoFramework.CoreLibrary.Tests.SystemTests.TextTests
 {
-	public class UTF8DecoderTests : ITestClass
+	[TestClass]
+	public class UTF8DecoderTests
 	{
+		[TestMethod]
 		public void Convert()
 		{
 			Decoder d = Encoding.UTF8.GetDecoder();

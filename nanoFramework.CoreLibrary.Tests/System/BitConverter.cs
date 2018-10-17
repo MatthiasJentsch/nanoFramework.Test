@@ -8,8 +8,10 @@ using System;
 
 namespace nanoFramework.CoreLibrary.Tests.SystemTests
 {
-	public class BitConverterTests : ITestClass
+	[TestClass]
+	public class BitConverterTests
 	{
+		[TestMethod]
 		public void DoubleToInt64Bits()
 		{
 			double d1 = 3.1415;
@@ -18,6 +20,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(-4572987861383272150, BitConverter.DoubleToInt64Bits(d2));
 		}
 
+		[TestMethod]
 		public void GetBytesShort()
 		{
 			short x = -815;
@@ -27,6 +30,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(252, b[1]);
 		}
 
+		[TestMethod]
 		public void GetBytesLong()
 		{
 			long x = -594775110748111512;
@@ -42,6 +46,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(247, b[7]);
 		}
 
+		[TestMethod]
 		public void GetBytesUint()
 		{
 			uint x = 3248111512;
@@ -53,6 +58,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(193, b[3]);
 		}
 
+		[TestMethod]
 		public void GetBytesUshort()
 		{
 			ushort x = 64521;
@@ -62,6 +68,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(252, b[1]);
 		}
 
+		[TestMethod]
 		public void GetBytesUlong()
 		{
 			ulong x = 18094775110748111512;
@@ -77,6 +84,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(251, b[7]);
 		}
 
+		[TestMethod]
 		public void GetBytesChar()
 		{
 			char x1 = 'A';
@@ -91,6 +99,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(32, b2[1]);
 		}
 
+		[TestMethod]
 		public void GetBytesBool()
 		{
 			bool x1 = true;
@@ -103,6 +112,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(0, b2[0]);
 		}
 
+		[TestMethod]
 		public void GetBytesDouble()
 		{
 			double d1 = 123456789.987654321;
@@ -129,6 +139,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(193, b2[7]);
 		}
 
+		[TestMethod]
 		public void GetBytesInt()
 		{
 			int x = -1748111512;
@@ -140,6 +151,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(151, b[3]);
 		}
 
+		[TestMethod]
 		public void GetBytesFloat()
 		{
 			float f1 = 123456789.987654321F;
@@ -158,6 +170,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(206, b2[3]);
 		}
 
+		[TestMethod]
 		public void Int64BitsToDouble()
 		{
 			long x1 = -594775110748111512;
@@ -166,6 +179,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(6.4606656927577285E-269, BitConverter.Int64BitsToDouble(x2));
 		}
 
+		[TestMethod]
 		public void ToBoolean()
 		{
 			byte[] x = new byte[] { 111, 205, 143, 88, 52, 111, 205, 193, 0, 1, 172, 32, 86, 14, 73, 64 };
@@ -173,78 +187,91 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.IsTrue(BitConverter.ToBoolean(x, 9));
 		}
 
+		[TestMethod]
 		public void ToChar()
 		{
 			byte[] x = new byte[] { 111, 205, 143, 88, 52, 111, 205, 193, 0, 1, 172, 32, 86, 14, 73, 64 };
 			Assert.AreEqual('€', BitConverter.ToChar(x, 10));
 		}
 
+		[TestMethod]
 		public void ToDouble()
 		{
 			byte[] x = new byte[] { 111, 205, 143, 88, 52, 111, 205, 193, 0, 1, 172, 32, 86, 14, 73, 64 };
 			Assert.AreEqual(-9.95029283019641E-97, BitConverter.ToDouble(x, 3));
 		}
 
+		[TestMethod]
 		public void ToInt16()
 		{
 			byte[] x = new byte[] { 111, 205, 143, 88, 52, 111, 205, 193, 0, 1, 172, 32, 86, 14, 73, 64 };
 			Assert.AreEqual(-28723, BitConverter.ToInt16(x, 1));
 		}
 
+		[TestMethod]
 		public void ToInt32()
 		{
 			byte[] x = new byte[] { 111, 205, 143, 88, 52, 111, 205, 193, 0, 1, 172, 32, 86, 14, 73, 64 };
 			Assert.AreEqual(16826829, BitConverter.ToInt32(x, 6));
 		}
 
+		[TestMethod]
 		public void ToInt64()
 		{
 			byte[] x = new byte[] { 111, 205, 143, 88, 52, 111, 205, 193, 0, 1, 172, 32, 86, 14, 73, 64 };
 			Assert.AreEqual(-6052555591833930664, BitConverter.ToInt64(x, 3));
 		}
 
+		[TestMethod]
 		public void ToSingle()
 		{
 			byte[] x = new byte[] { 111, 205, 143, 88, 52, 111, 205, 193, 0, 1, 172, 32, 86, 14, 73, 64 };
 			Assert.AreEqual(3.1415F, BitConverter.ToSingle(x, 12));
 		}
 
+		[TestMethod]
 		public void ToString1()
 		{
 			byte[] x = new byte[] { 111, 205, 143, 88, 52, 111, 205, 193, 0, 1, 172, 32, 86, 14, 73, 64 };
 			Assert.AreEqual("6F-CD-8F-58-34-6F-CD-C1-00-01-AC-20-56-0E-49-40", BitConverter.ToString(x));
 		}
 
+		[TestMethod]
 		public void ToString2()
 		{
 			byte[] x = new byte[] { 111, 205, 143, 88, 52, 111, 205, 193, 0, 1, 172, 32, 86, 14, 73, 64 };
 			Assert.AreEqual("34-6F-CD-C1-00-01-AC-20-56-0E-49-40", BitConverter.ToString(x, 4));
 		}
 
+		[TestMethod]
 		public void ToString3()
 		{
 			byte[] x = new byte[] { 111, 205, 143, 88, 52, 111, 205, 193, 0, 1, 172, 32, 86, 14, 73, 64 };
 			Assert.AreEqual("34-6F-CD-C1-00", BitConverter.ToString(x, 4, 5));
 		}
 
+		[TestMethod]
 		public void ToUInt16()
 		{
 			byte[] x = new byte[] { 111, 205, 143, 88, 52, 111, 205, 193, 0, 1, 172, 32, 86, 14, 73, 64 };
 			Assert.AreEqual((ushort)13400, BitConverter.ToUInt16(x, 3));
 		}
 
+		[TestMethod]
 		public void ToUInt32()
 		{
 			byte[] x = new byte[] { 111, 205, 143, 88, 52, 111, 205, 193, 0, 1, 172, 32, 86, 14, 73, 64 };
 			Assert.AreEqual(3251466036, BitConverter.ToUInt32(x, 4));
 		}
 
+		[TestMethod]
 		public void ToUInt64()
 		{
 			byte[] x = new byte[] { 111, 205, 143, 88, 52, 111, 205, 193, 0, 1, 172, 32, 86, 14, 73, 64 };
 			Assert.AreEqual((ulong)4632249454805385472, BitConverter.ToUInt64(x, 8));
 		}
 
+		[TestMethod]
 		public void IsLittleEndian()
 		{
 			Assert.IsTrue(BitConverter.IsLittleEndian);

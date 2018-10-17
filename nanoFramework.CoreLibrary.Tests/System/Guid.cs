@@ -8,8 +8,10 @@ using System;
 
 namespace nanoFramework.CoreLibrary.Tests.SystemTests
 {
-	public class GuidTests : ITestClass
+	[TestClass]
+	public class GuidTests
 	{
+		[TestMethod]
 		public void Constructor1()
 		{
 			byte[] b = new byte[] { 29, 244, 133, 99, 41, 224, 228, 66, 145, 164, 109, 255, 161, 165, 48, 13 };
@@ -17,18 +19,21 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual("6385f41d-e029-42e4-91a4-6dffa1a5300d", g.ToString());
 		}
 
+		[TestMethod]
 		public void Constructor2()
 		{
 			Guid g = new Guid((int)1669723165, (short)-8151, (short)17124, 145, 164, 109, 255, 161, 165, 48, 13);
 			Assert.AreEqual("6385f41d-e029-42e4-91a4-6dffa1a5300d", g.ToString());
 		}
 
+		[TestMethod]
 		public void Constructor3()
 		{
 			Guid g = new Guid((uint)1669723165, (ushort)57385, (ushort)17124, 145, 164, 109, 255, 161, 165, 48, 13);
 			Assert.AreEqual("6385f41d-e029-42e4-91a4-6dffa1a5300d", g.ToString());
 		}
 
+		[TestMethod]
 		public void CompareTo()
 		{
 			byte[] b1 = new byte[] { 29, 244, 133, 99, 41, 224, 228, 66, 145, 164, 109, 255, 161, 165, 48, 13 };
@@ -42,6 +47,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.IsTrue(g1.CompareTo(g3) == 0);
 		}
 
+		[TestMethod]
 		public void Equals1()
 		{
 			byte[] b1 = new byte[] { 29, 244, 133, 99, 41, 224, 228, 66, 145, 164, 109, 255, 161, 165, 48, 13 };
@@ -55,6 +61,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.IsTrue(g1.Equals(g3));
 		}
 
+		[TestMethod]
 		public void GetHashCode1()
 		{
 			byte[] b1 = new byte[] { 29, 244, 133, 99, 41, 224, 228, 66, 145, 164, 109, 255, 161, 165, 48, 13 };
@@ -71,6 +78,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(h1, h3);
 		}
 
+		[TestMethod]
 		public void NewGuid()
 		{
 			Guid g1 = Guid.NewGuid();
@@ -78,6 +86,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreNotEqual(g1.GetHashCode(), g2.GetHashCode());
 		}
 
+		[TestMethod]
 		public void ToByteArray()
 		{
 			byte[] r = new Guid((int)1669723165, (short)-8151, (short)17124, 145, 164, 109, 255, 161, 165, 48, 13).ToByteArray();
@@ -100,6 +109,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(13, r[15]);
 		}
 
+		[TestMethod]
 		public void ToString1()
 		{
 			Guid g = new Guid((uint)1669723165, (ushort)57385, (ushort)17124, 145, 164, 109, 255, 161, 165, 48, 13);

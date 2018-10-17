@@ -8,8 +8,10 @@ using System;
 
 namespace nanoFramework.CoreLibrary.Tests.SystemTests
 {
-	public class ObjectTests : ITestClass
+	[TestClass]
+	public class ObjectTests
 	{
+		[TestMethod]
 		public void Equals1()
 		{
 			object a = new object();
@@ -19,6 +21,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.IsTrue(a.Equals(c));
 		}
 
+		[TestMethod]
 		public void Equals2()
 		{
 			object a = new object();
@@ -28,6 +31,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.IsTrue(object.Equals(a, c));
 		}
 
+		[TestMethod]
 		public void GetHashCode1()
 		{
 			object a = new object();
@@ -37,6 +41,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(a.GetHashCode(), c.GetHashCode());
 		}
 
+		[TestMethod]
 		public void GetType1()
 		{
 			object a = new object();
@@ -45,6 +50,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual("System.DateTime", b.GetType().FullName);
 		}
 
+		[TestMethod]
 		public void ReferenceEquals1()
 		{
 			object a = new object();
@@ -54,6 +60,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.IsTrue(object.ReferenceEquals(a, c));
 		}
 
+		[TestMethod]
 		public void ToString1()
 		{
 			object a = new object();

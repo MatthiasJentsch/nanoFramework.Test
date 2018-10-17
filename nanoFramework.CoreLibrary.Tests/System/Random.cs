@@ -8,20 +8,24 @@ using System;
 
 namespace nanoFramework.CoreLibrary.Tests.SystemTests
 {
-	public class RandomTests : ITestClass
+	[TestClass]
+	public class RandomTests
 	{
+		[TestMethod]
 		public void Constructor()
 		{
 			Random r = new Random(4711);
 			Assert.IsNotNull(r);
 		}
 
+		[TestMethod]
 		public void Next1()
 		{
 			Random r = new Random(4711);
 			Assert.IsTrue(r.Next() >= 0);
 		}
 
+		[TestMethod]
 		public void Next2()
 		{
 			Random r = new Random(4711);
@@ -29,6 +33,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.IsTrue(n >= 0 && n < 815);
 		}
 
+		[TestMethod]
 		public void NextBytes()
 		{
 			Random r = new Random(4711);
@@ -37,6 +42,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.IsTrue((x[0] + x[1] + x[2] + x[3] + x[4] + x[5] + x[6] + x[7] + x[8] + x[9]) > 0);
 		}
 
+		[TestMethod]
 		public void NextDouble()
 		{
 			Random r = new Random(4711);

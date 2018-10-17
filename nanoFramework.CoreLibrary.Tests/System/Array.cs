@@ -9,10 +9,12 @@ using System.Collections;
 
 namespace nanoFramework.CoreLibrary.Tests.SystemTests
 {
-	public class ArrayTests : ITestClass
+	[TestClass]
+	public class ArrayTests
 	{
 		private readonly IComparer _charComparer = new CharComparer();
 
+		[TestMethod]
 		public void BinarySearch1()
 		{
 			char[] o = new char[] { 'n', 'a', 'n', 'o', 'F', 'r', 'a', 'm', 'e', 'w', 'o', 'r', 'k' };
@@ -20,6 +22,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(-14, Array.BinarySearch(o, 'x', _charComparer));
 		}
 
+		[TestMethod]
 		public void BinarySearch2()
 		{
 			char[] o = new char[] { 'n', 'a', 'n', 'o', 'F', 'r', 'a', 'm', 'e', 'w', 'o', 'r', 'k' };
@@ -27,6 +30,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(7, Array.BinarySearch(o, 5, 4, 'm', _charComparer));
 		}
 
+		[TestMethod]
 		public void Clear()
 		{
 			char[] o = new char[] { 'n', 'a', 'n', 'o', 'F', 'r', 'a', 'm', 'e', 'w', 'o', 'r', 'k' };
@@ -41,6 +45,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual('w', o[9]);
 		}
 
+		[TestMethod]
 		public void Clone()
 		{
 			char[] o = new char[] { 'n', 'a', 'n', 'o', 'F', 'r', 'a', 'm', 'e', 'w', 'o', 'r', 'k' };
@@ -50,6 +55,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual("nanoFramework", new string(c));
 		}
 
+		[TestMethod]
 		public void Copy1()
 		{
 			char[] o = new char[] { 'n', 'a', 'n', 'o', 'F', 'r', 'a', 'm', 'e', 'w', 'o', 'r', 'k' };
@@ -59,6 +65,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(0, c[3]);
 		}
 
+		[TestMethod]
 		public void Copy2()
 		{
 			char[] o = new char[] { 'n', 'a', 'n', 'o', 'F', 'r', 'a', 'm', 'e', 'w', 'o', 'r', 'k' };
@@ -71,6 +78,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(0, c[7]);
 		}
 
+		[TestMethod]
 		public void CopyTo()
 		{
 			char[] o = new char[] { 'n', 'a', 'n', 'o', 'F', 'r', 'a', 'm', 'e', 'w', 'o', 'r', 'k' };
@@ -83,6 +91,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual('F', c[6]);
 		}
 
+		[TestMethod]
 		public void CreateInstance()
 		{
 			char[] o = (char[])Array.CreateInstance(typeof(char), 3);
@@ -93,6 +102,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.IsNull(e[3]);
 		}
 
+		[TestMethod]
 		public void GetEnumerator()
 		{
 			char[] o = new char[] { 'n', 'f', 'C', 'L', 'R' };
@@ -114,12 +124,14 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual('n', e.Current);
 		}
 
+		[TestMethod]
 		public void GetValue()
 		{
 			char[] o = new char[] { 'n', 'a', 'n', 'o', 'F', 'r', 'a', 'm', 'e', 'w', 'o', 'r', 'k' };
 			Assert.AreEqual('r', o.GetValue(5));
 		}
 
+		[TestMethod]
 		public void IndexOf1()
 		{
 			char[] o = new char[] { 'n', 'a', 'n', 'o', 'F', 'r', 'a', 'm', 'e', 'w', 'o', 'r', 'k' };
@@ -127,6 +139,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(-1, Array.IndexOf(o, 'x'));
 		}
 
+		[TestMethod]
 		public void IndexOf2()
 		{
 			char[] o = new char[] { 'n', 'a', 'n', 'o', 'F', 'r', 'a', 'm', 'e', 'w', 'o', 'r', 'k' };
@@ -134,6 +147,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(-1, Array.IndexOf(o, 'F', 5));
 		}
 
+		[TestMethod]
 		public void IndexOf3()
 		{
 			char[] o = new char[] { 'n', 'a', 'n', 'o', 'F', 'r', 'a', 'm', 'e', 'w', 'o', 'r', 'k' };
@@ -142,36 +156,42 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(-1, Array.IndexOf(o, 'a', 8, 4));
 		}
 
+		[TestMethod]
 		public void IsFixed()
 		{
 			char[] o = new char[] { 'n', 'a', 'n', 'o', 'F', 'r', 'a', 'm', 'e', 'w', 'o', 'r', 'k' };
 			Assert.IsTrue(o.IsFixedSize);
 		}
 
+		[TestMethod]
 		public void IsReadOnly()
 		{
 			char[] o = new char[] { 'n', 'a', 'n', 'o', 'F', 'r', 'a', 'm', 'e', 'w', 'o', 'r', 'k' };
 			Assert.IsFalse(o.IsReadOnly);
 		}
 
+		[TestMethod]
 		public void IsSynchronized()
 		{
 			char[] o = new char[] { 'n', 'a', 'n', 'o', 'F', 'r', 'a', 'm', 'e', 'w', 'o', 'r', 'k' };
 			Assert.IsFalse(o.IsSynchronized);
 		}
 
+		[TestMethod]
 		public void Indexer()
 		{
 			char[] o = new char[] { 'n', 'a', 'n', 'o', 'F', 'r', 'a', 'm', 'e', 'w', 'o', 'r', 'k' };
 			Assert.AreEqual('o', o[3]);
 		}
 
+		[TestMethod]
 		public void Lenght()
 		{
 			char[] o = new char[] { 'n', 'a', 'n', 'o', 'F', 'r', 'a', 'm', 'e', 'w', 'o', 'r', 'k' };
 			Assert.AreEqual(13, o.Length);
 		}
 
+		[TestMethod]
 		public void SyncRoot()
 		{
 			char[] o = new char[] { 'n', 'a', 'n', 'o', 'F', 'r', 'a', 'm', 'e', 'w', 'o', 'r', 'k' };

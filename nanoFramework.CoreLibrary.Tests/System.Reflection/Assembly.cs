@@ -10,23 +10,27 @@ using System.Reflection;
 
 namespace nanoFramework.CoreLibrary.Tests.SystemTests.ReflectionTests
 {
-	public class AssemblyTests : ITestClass
+	[TestClass]
+	public class AssemblyTests
 	{
+		[TestMethod]
 		public void GetAssembly()
 		{
-			Assembly a = Assembly.GetAssembly(typeof(ITestClass));
+			Assembly a = Assembly.GetAssembly(typeof(TestClassAttribute));
 			Assert.IsNotNull(a);
-			Assert.AreEqual(typeof(ITestClass).Assembly, a);
+			Assert.AreEqual(typeof(TestClassAttribute).Assembly, a);
 		}
 
+		[TestMethod]
 		public void GetExecutingAssembly()
 		{
 			Assembly a = Assembly.GetExecutingAssembly();
 			Assert.IsNotNull(a);
 			Assert.AreEqual(GetType().Assembly, a);
-			Assert.AreNotEqual(typeof(ITestClass).Assembly, a);
+			Assert.AreNotEqual(typeof(TestClassAttribute).Assembly, a);
 		}
 
+		[TestMethod]
 		public void GetName()
 		{
 			Assembly a = Assembly.GetAssembly(GetType());
@@ -35,6 +39,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.ReflectionTests
 			Assert.IsTrue(n.FullName.IndexOf("CoreLibrary") >= 0);
 		}
 
+		[TestMethod]
 		public void GetSatelliteAssembly()
 		{
 			Assembly a = Assembly.GetExecutingAssembly();
@@ -47,10 +52,11 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.ReflectionTests
 			catch (Exception) { }
 		}
 
+		[TestMethod]
 		public void GetType1()
 		{
-			Assembly a = Assembly.GetAssembly(typeof(ITestClass));
-			Type t1 = a.GetType(typeof(ITestClass).FullName);
+			Assembly a = Assembly.GetAssembly(typeof(TestClassAttribute));
+			Type t1 = a.GetType(typeof(TestClassAttribute).FullName);
 			Assert.IsNotNull(t1);
 			try
 			{
@@ -60,10 +66,11 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.ReflectionTests
 			catch (Exception) { }
 		}
 
+		[TestMethod]
 		public void GetType2()
 		{
-			Assembly a = Assembly.GetAssembly(typeof(ITestClass));
-			Type t1 = a.GetType(typeof(ITestClass).FullName, false);
+			Assembly a = Assembly.GetAssembly(typeof(TestClassAttribute));
+			Type t1 = a.GetType(typeof(TestClassAttribute).FullName, false);
 			Assert.IsNotNull(t1);
 			Type t2 = a.GetType("NotExistingClass", false);
 			Assert.IsNull(t2);
@@ -75,14 +82,16 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.ReflectionTests
 			catch (Exception) { }
 		}
 
+		[TestMethod]
 		public void GetTypes()
 		{
-			Assembly a = Assembly.GetAssembly(typeof(ITestClass));
+			Assembly a = Assembly.GetAssembly(typeof(TestClassAttribute));
 			Type[] t = a.GetTypes();
 			Assert.IsNotNull(t);
 			Assert.IsTrue(t.Length > 0);
 		}
 
+		[TestMethod]
 		public void FullName()
 		{
 			Assembly a = Assembly.GetExecutingAssembly();

@@ -9,11 +9,13 @@ using System.Collections;
 
 namespace nanoFramework.CoreLibrary.Tests.SystemTests.CollectionsTests
 {
-	public class ArrayListTests : ITestClass, ITestInitialize
+	[TestClass]
+	public class ArrayListTests
 	{
 		private ArrayList _theList = null;
 		private readonly IComparer _charComparer = new CharComparer();
 
+		[TestInitialize]
 		public void TestInitialize()
 		{
 			_theList = new ArrayList();
@@ -32,12 +34,14 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.CollectionsTests
 			_theList.Add('k');
 		}
 
+		[TestMethod]
 		public void Add()
 		{
 			_theList.Add('!');
 			Assert.AreEqual(14, _theList.Count);
 		}
 
+		[TestMethod]
 		public void BinarySearch()
 		{
 			ArrayList a = new ArrayList();
@@ -49,12 +53,14 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.CollectionsTests
 			Assert.AreEqual(-1, a.BinarySearch('A', _charComparer));
 		}
 
+		[TestMethod]
 		public void Clear()
 		{
 			_theList.Clear();
 			Assert.AreEqual(0, _theList.Count);
 		}
 
+		[TestMethod]
 		public void Clone()
 		{
 			ArrayList c = _theList.Clone() as ArrayList;
@@ -63,12 +69,14 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.CollectionsTests
 			Assert.AreEqual('F', c[4]);
 		}
 
+		[TestMethod]
 		public void Contains()
 		{
 			Assert.IsTrue(_theList.Contains('F'));
 			Assert.IsFalse(_theList.Contains('A'));
 		}
 
+		[TestMethod]
 		public void CopyTo1()
 		{
 			char[] c = new char[13];
@@ -79,6 +87,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.CollectionsTests
 			Assert.AreEqual("nanoFramework", new string(c));
 		}
 
+		[TestMethod]
 		public void CopyTo2()
 		{
 			char[] c = new char[15];
@@ -90,6 +99,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.CollectionsTests
 			Assert.AreEqual('F', c[6]);
 		}
 
+		[TestMethod]
 		public void GetEnumerator()
 		{
 			IEnumerator e = _theList.GetEnumerator();
@@ -116,18 +126,21 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.CollectionsTests
 			Assert.AreEqual('n', e.Current);
 		}
 
+		[TestMethod]
 		public void IndexOf1()
 		{
 			Assert.AreEqual(3, _theList.IndexOf('o'));
 			Assert.AreEqual(-1, _theList.IndexOf('x'));
 		}
 
+		[TestMethod]
 		public void IndexOf2()
 		{
 			Assert.AreEqual(4, _theList.IndexOf('F', 3));
 			Assert.AreEqual(-1, _theList.IndexOf('F', 5));
 		}
 
+		[TestMethod]
 		public void IndexOf3()
 		{
 			Assert.AreEqual(1, _theList.IndexOf('a', 0, 4));
@@ -135,6 +148,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.CollectionsTests
 			Assert.AreEqual(-1, _theList.IndexOf('a', 8, 4));
 		}
 
+		[TestMethod]
 		public void Insert()
 		{
 			_theList.Insert(4, '-');
@@ -144,6 +158,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.CollectionsTests
 			Assert.AreEqual('F', _theList[5]);
 		}
 
+		[TestMethod]
 		public void Remove()
 		{
 			_theList.Remove('o');
@@ -153,6 +168,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.CollectionsTests
 			Assert.AreEqual('o', _theList[9]);
 		}
 
+		[TestMethod]
 		public void RemoveAt()
 		{
 			_theList.RemoveAt(4);
@@ -162,6 +178,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.CollectionsTests
 			Assert.AreEqual('k', _theList[11]);
 		}
 
+		[TestMethod]
 		public void ToArray1()
 		{
 			object[] a = _theList.ToArray();
@@ -170,6 +187,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.CollectionsTests
 			Assert.AreEqual('k', a[12]);
 		}
 
+		[TestMethod]
 		public void ToArray2()
 		{
 			Array a = _theList.ToArray(typeof(char));
@@ -178,26 +196,31 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.CollectionsTests
 			Assert.AreEqual('k', a.GetValue(12));
 		}
 
+		[TestMethod]
 		public void Count()
 		{
 			Assert.AreEqual(13, _theList.Count);
 		}
 
+		[TestMethod]
 		public void IsFixedSize()
 		{
 			Assert.IsFalse(_theList.IsFixedSize);
 		}
 
+		[TestMethod]
 		public void IsReadOnly()
 		{
 			Assert.IsFalse(_theList.IsReadOnly);
 		}
 
+		[TestMethod]
 		public void IsSynchronized()
 		{
 			Assert.IsFalse(_theList.IsSynchronized);
 		}
 
+		[TestMethod]
 		public void Indexer()
 		{
 			Assert.AreEqual('o', _theList[3]);

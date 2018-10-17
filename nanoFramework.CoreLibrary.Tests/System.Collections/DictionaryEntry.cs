@@ -8,8 +8,10 @@ using System.Collections;
 
 namespace nanoFramework.CoreLibrary.Tests.SystemTests.CollectionsTests
 {
-	public class DictionaryEntryTests : ITestClass
+	[TestClass]
+	public class DictionaryEntryTests
 	{
+		[TestMethod]
 		public void Constructor()
 		{
 			DictionaryEntry e = new DictionaryEntry(1, "CLR");

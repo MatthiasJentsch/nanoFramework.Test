@@ -7,7 +7,8 @@ using nanoFramework.Test.Engine;
 
 namespace nanoFramework.CoreLibrary.Tests.SystemTests.ThreadingTests
 {
-	public class TimerTests : ITestClass
+	[TestClass]
+	public class TimerTests
 	{
 	}
 }

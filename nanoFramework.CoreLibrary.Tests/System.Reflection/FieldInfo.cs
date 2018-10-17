@@ -9,22 +9,26 @@ using System.Reflection;
 
 namespace nanoFramework.CoreLibrary.Tests.SystemTests.ReflectionTests
 {
-	public class FieldInfoTests : ITestClass, IClassInitialize
+	[TestClass]
+	public class FieldInfoTests
 	{
 		private FieldInfo _info;
 
+		[ClassInitialize]
 		public void ClassInitialize()
 		{
 			_info = typeof(TestType1).GetField("PublicField");
 			Assert.IsNotNull(_info);
 		}
 
+		[TestMethod]
 		public void GetValue()
 		{
 			int x = (int)_info.GetValue(new TestType1());
 			Assert.AreEqual(-1, x);
 		}
 
+		[TestMethod]
 		public void SetValue()
 		{
 			TestType1 i = new TestType1();
@@ -33,6 +37,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.ReflectionTests
 			Assert.AreEqual(4711, x);
 		}
 
+		[TestMethod]
 		public void FieldType()
 		{
 			Type t = _info.FieldType;
@@ -40,6 +45,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.ReflectionTests
 			Assert.AreEqual(typeof(int).Name, t.Name);
 		}
 
+		[TestMethod]
 		public void MemberType()
 		{
 			Assert.AreEqual(MemberTypes.Field, _info.MemberType);

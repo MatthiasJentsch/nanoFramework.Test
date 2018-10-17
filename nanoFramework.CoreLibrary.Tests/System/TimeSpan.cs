@@ -8,14 +8,17 @@ using System;
 
 namespace nanoFramework.CoreLibrary.Tests.SystemTests
 {
-	public class TimeSpanTests : ITestClass
+	[TestClass]
+	public class TimeSpanTests
 	{
+		[TestMethod]
 		public void Constructor1()
 		{
 			TimeSpan ts = new TimeSpan(47110815);
 			Assert.AreEqual(47110815, ts.Ticks);
 		}
 
+		[TestMethod]
 		public void Constructor2()
 		{
 			TimeSpan ts = new TimeSpan(14, 35, 21);
@@ -26,6 +29,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(0, ts.Milliseconds);
 		}
 
+		[TestMethod]
 		public void Constructor3()
 		{
 			TimeSpan ts = new TimeSpan(5, 14, 35, 21);
@@ -36,6 +40,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(0, ts.Milliseconds);
 		}
 
+		[TestMethod]
 		public void Constructor4()
 		{
 			TimeSpan ts = new TimeSpan(5, 14, 35, 21, 815);
@@ -46,6 +51,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(815, ts.Milliseconds);
 		}
 
+		[TestMethod]
 		public void Add()
 		{
 			TimeSpan ts = new TimeSpan(14, 35, 21);
@@ -57,6 +63,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(0, ts.Milliseconds);
 		}
 
+		[TestMethod]
 		public void Compare()
 		{
 			TimeSpan ts1 = new TimeSpan(14, 35, 21);
@@ -67,6 +74,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.IsTrue(TimeSpan.Compare(ts1, ts3) == 0);
 		}
 
+		[TestMethod]
 		public void CompareTo()
 		{
 			TimeSpan ts1 = new TimeSpan(14, 35, 21);
@@ -77,6 +85,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.IsTrue(ts1.CompareTo(ts3) == 0);
 		}
 
+		[TestMethod]
 		public void Duration()
 		{
 			TimeSpan ts1 = new TimeSpan(47110815);
@@ -85,6 +94,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(47110815, ts2.Duration().Ticks);
 		}
 
+		[TestMethod]
 		public void Equals1()
 		{
 			TimeSpan ts1 = new TimeSpan(14, 35, 21);
@@ -94,6 +104,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.IsTrue(ts1.Equals(ts3));
 		}
 
+		[TestMethod]
 		public void Equals2()
 		{
 			TimeSpan ts1 = new TimeSpan(14, 35, 21);
@@ -103,12 +114,14 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.IsTrue(TimeSpan.Equals(ts1, ts3));
 		}
 
+		[TestMethod]
 		public void FromTicks()
 		{
 			TimeSpan ts = TimeSpan.FromTicks(47110815);
 			Assert.AreEqual(47110815, ts.Ticks);
 		}
 
+		[TestMethod]
 		public void Negate()
 		{
 			TimeSpan ts1 = new TimeSpan(47110815);
@@ -117,6 +130,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(47110815, ts2.Negate().Ticks);
 		}
 
+		[TestMethod]
 		public void Subtract()
 		{
 			TimeSpan ts = new TimeSpan(14, 35, 21);
@@ -128,6 +142,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(0, ts.Milliseconds);
 		}
 
+		[TestMethod]
 		public void ToString1()
 		{
 			TimeSpan ts = new TimeSpan(5, 14, 35, 21, 815);

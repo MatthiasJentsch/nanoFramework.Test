@@ -7,18 +7,22 @@ using nanoFramework.Test.Engine;
 
 namespace nanoFramework.CoreLibrary.Tests.SystemTests
 {
-	public class SByteTests : ITestClass
+	[TestClass]
+	public class SByteTests
 	{
+		[TestMethod]
 		public void Parse()
 		{
 			Assert.AreEqual(-42, sbyte.Parse("-42"));
 		}
 
+		[TestMethod]
 		public void ToString1()
 		{
 			Assert.AreEqual("-42", ((sbyte)-42).ToString());
 		}
 
+		[TestMethod]
 		public void ToString2()
 		{
 			Assert.AreEqual("D6", ((sbyte)-42).ToString("X2"));

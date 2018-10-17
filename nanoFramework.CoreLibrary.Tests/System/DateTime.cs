@@ -9,20 +9,24 @@ using System.Threading;
 
 namespace nanoFramework.CoreLibrary.Tests.SystemTests
 {
-	public class DateTimeTests : ITestClass
+	[TestClass]
+	public class DateTimeTests
 	{
+		[TestMethod]
 		public void Constructor1()
 		{
 			DateTime dt = new DateTime(47110815);
 			Assert.AreEqual(47110815, dt.Ticks);
 		}
 
+		[TestMethod]
 		public void Constructor2()
 		{
 			DateTime dt = new DateTime(47110815, DateTimeKind.Utc);
 			Assert.AreEqual(47110815, dt.Ticks);
 		}
 
+		[TestMethod]
 		public void Constructor3()
 		{
 			DateTime dt = new DateTime(2010, 1, 19);
@@ -31,6 +35,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(19, dt.Day);
 		}
 
+		[TestMethod]
 		public void Constructor4()
 		{
 			DateTime dt = new DateTime(2010, 1, 19, 14, 35, 21);
@@ -42,6 +47,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(21, dt.Second);
 		}
 
+		[TestMethod]
 		public void Constructor5()
 		{
 			DateTime dt = new DateTime(2010, 1, 19, 14, 35, 21, 815);
@@ -54,6 +60,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(815, dt.Millisecond);
 		}
 
+		[TestMethod]
 		public void Add()
 		{
 			DateTime dt = new DateTime(2010, 1, 19);
@@ -67,6 +74,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(0, dt.Millisecond);
 		}
 
+		[TestMethod]
 		public void AddDays()
 		{
 			DateTime dt = new DateTime(2010, 1, 28);
@@ -76,6 +84,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(4, dt.Day);
 		}
 
+		[TestMethod]
 		public void AddHours()
 		{
 			DateTime dt = new DateTime(2010, 1, 28, 22, 0, 0);
@@ -89,6 +98,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(0, dt.Millisecond);
 		}
 
+		[TestMethod]
 		public void AddMilliseconds()
 		{
 			DateTime dt = new DateTime(2010, 1, 28, 22, 0, 0);
@@ -102,6 +112,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(711, dt.Millisecond);
 		}
 
+		[TestMethod]
 		public void AddMinutes()
 		{
 			DateTime dt = new DateTime(2010, 1, 28, 22, 54, 0);
@@ -115,6 +126,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(0, dt.Millisecond);
 		}
 
+		[TestMethod]
 		public void AddSeconds()
 		{
 			DateTime dt = new DateTime(2010, 1, 28, 22, 54, 45);
@@ -128,6 +140,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(0, dt.Millisecond);
 		}
 
+		[TestMethod]
 		public void AddTicks()
 		{
 			DateTime dt = new DateTime(47110815);
@@ -135,6 +148,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(47110857, dt.Ticks);
 		}
 
+		[TestMethod]
 		public void Compare()
 		{
 			DateTime dt1 = new DateTime(2010, 1, 28);
@@ -145,6 +159,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.IsTrue(DateTime.Compare(dt1, dt3) == 0);
 		}
 
+		[TestMethod]
 		public void CompareTo()
 		{
 			DateTime dt1 = new DateTime(2010, 1, 28);
@@ -155,6 +170,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.IsTrue(dt1.CompareTo(dt3) == 0);
 		}
 
+		[TestMethod]
 		public void DaysInMonth()
 		{
 			Assert.AreEqual(28, DateTime.DaysInMonth(1900, 2));
@@ -164,6 +180,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(31, DateTime.DaysInMonth(2018, 12));
 		}
 
+		[TestMethod]
 		public void Equals1()
 		{
 			DateTime dt1 = new DateTime(2010, 1, 28);
@@ -173,6 +190,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.IsTrue(dt1.Equals(dt3));
 		}
 
+		[TestMethod]
 		public void Equals2()
 		{
 			DateTime dt1 = new DateTime(2010, 1, 28);
@@ -182,6 +200,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.IsTrue(DateTime.Equals(dt1, dt3));
 		}
 
+		[TestMethod]
 		public void Subtract1()
 		{
 			DateTime dt1 = new DateTime(2010, 1, 28);
@@ -190,6 +209,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(9, ts.Days);
 		}
 
+		[TestMethod]
 		public void Subtract2()
 		{
 			DateTime dt1 = new DateTime(2010, 1, 28);
@@ -197,6 +217,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(19, dt2.Day);
 		}
 
+		[TestMethod]
 		public void ToString1()
 		{
 			string dt = new DateTime(2010, 1, 19).ToString();
@@ -204,12 +225,14 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.IsTrue(dt.IndexOf("2010") >= 0);
 		}
 
+		[TestMethod]
 		public void ToString2()
 		{
 			string dt = new DateTime(2010, 1, 19).ToString("yyyyMMdd");
 			Assert.AreEqual("20100119", dt);
 		}
 
+		[TestMethod]
 		public void Date()
 		{
 			DateTime dt1 = new DateTime(2010, 1, 28, 22, 54, 45);
@@ -223,66 +246,77 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(0, dt2.Millisecond);
 		}
 
+		[TestMethod]
 		public void Day()
 		{
 			DateTime dt = new DateTime(2010, 1, 28, 22, 54, 45);
 			Assert.AreEqual(28, dt.Day);
 		}
 
+		[TestMethod]
 		public void DayOfWeek1()
 		{
 			DateTime dt = new DateTime(2018, 6, 28, 22, 54, 45);
 			Assert.AreEqual(DayOfWeek.Thursday, dt.DayOfWeek);
 		}
 
+		[TestMethod]
 		public void DayOfYear()
 		{
 			DateTime dt = new DateTime(2018, 6, 28, 22, 54, 45);
 			Assert.AreEqual(179, dt.DayOfYear);
 		}
 
+		[TestMethod]
 		public void Hour()
 		{
 			DateTime dt = new DateTime(2010, 1, 28, 22, 54, 45);
 			Assert.AreEqual(22, dt.Hour);
 		}
 
+		[TestMethod]
 		public void Kind()
 		{
 			DateTime dt = new DateTime(47110815, DateTimeKind.Utc);
 			Assert.AreEqual(DateTimeKind.Utc, dt.Kind);
 		}
 
+		[TestMethod]
 		public void Millisecond()
 		{
 			DateTime dt = new DateTime(2010, 1, 28, 22, 54, 45);
 			Assert.AreEqual(0, dt.Millisecond);
 		}
 
+		[TestMethod]
 		public void Minute()
 		{
 			DateTime dt = new DateTime(2010, 1, 28, 22, 54, 45);
 			Assert.AreEqual(54, dt.Minute);
 		}
 
+		[TestMethod]
 		public void Month()
 		{
 			DateTime dt = new DateTime(2010, 1, 28, 22, 54, 45);
 			Assert.AreEqual(1, dt.Month);
 		}
 
+		[TestMethod]
 		public void Second()
 		{
 			DateTime dt = new DateTime(2010, 1, 28, 22, 54, 45);
 			Assert.AreEqual(45, dt.Second);
 		}
 
+		[TestMethod]
 		public void Ticks()
 		{
 			DateTime dt = new DateTime(47110815);
 			Assert.AreEqual(47110815, dt.Ticks);
 		}
 
+		[TestMethod]
 		public void TimeOfDay()
 		{
 			DateTime dt = new DateTime(2010, 1, 28, 22, 54, 45);
@@ -293,6 +327,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(0, ts.Milliseconds);
 		}
 
+		[TestMethod]
 		public void Today()
 		{
 			DateTime dt = DateTime.Today;
@@ -302,6 +337,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(0, dt.Millisecond);
 		}
 
+		[TestMethod]
 		public void UtcNow()
 		{
 			DateTime dt1 = DateTime.UtcNow;
@@ -310,12 +346,14 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.IsTrue(dt2 > dt1);
 		}
 
+		[TestMethod]
 		public void Year()
 		{
 			DateTime dt = new DateTime(2010, 1, 28, 22, 54, 45);
 			Assert.AreEqual(2010, dt.Year);
 		}
 
+		[TestMethod]
 		public void OperatorPlus()
 		{
 			DateTime dt = new DateTime(2010, 1, 19);
@@ -329,6 +367,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(0, dt.Millisecond);
 		}
 
+		[TestMethod]
 		public void OperatorEqual()
 		{
 			DateTime dt1 = new DateTime(2010, 1, 28);
@@ -338,6 +377,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.IsTrue(dt1 == dt3);
 		}
 
+		[TestMethod]
 		public void OperatorGreater()
 		{
 			DateTime dt1 = new DateTime(2010, 1, 28);
@@ -347,6 +387,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.IsFalse(dt2 > dt3);
 		}
 
+		[TestMethod]
 		public void OperatorGreaterOrEqual()
 		{
 			DateTime dt1 = new DateTime(2010, 1, 28);
@@ -356,6 +397,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.IsTrue(dt1 >= dt3);
 		}
 
+		[TestMethod]
 		public void OperatorNotEqual()
 		{
 			DateTime dt1 = new DateTime(2010, 1, 28);
@@ -365,6 +407,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.IsFalse(dt1 != dt3);
 		}
 
+		[TestMethod]
 		public void OperatorLesser()
 		{
 			DateTime dt1 = new DateTime(2010, 1, 28);
@@ -374,6 +417,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.IsFalse(dt3 < dt2);
 		}
 
+		[TestMethod]
 		public void OperatorLesserOrEqual()
 		{
 			DateTime dt1 = new DateTime(2010, 1, 28);
@@ -383,6 +427,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.IsTrue(dt3 <= dt1);
 		}
 
+		[TestMethod]
 		public void OperatorMinus1()
 		{
 			DateTime dt1 = new DateTime(2010, 1, 28);
@@ -391,6 +436,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(9, ts.Days);
 		}
 
+		[TestMethod]
 		public void OperatorMinus2()
 		{
 			DateTime dt1 = new DateTime(2010, 1, 28);

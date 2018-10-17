@@ -7,18 +7,22 @@ using nanoFramework.Test.Engine;
 
 namespace nanoFramework.CoreLibrary.Tests.SystemTests
 {
-	public class Int64Tests : ITestClass
+	[TestClass]
+	public class Int64Tests
 	{
+		[TestMethod]
 		public void Parse()
 		{
 			Assert.AreEqual(-1234567899876543210, long.Parse("-1234567899876543210"));
 		}
 
+		[TestMethod]
 		public void ToString1()
 		{
 			Assert.AreEqual("-1234567899876543210", ((long)-1234567899876543210).ToString());
 		}
 
+		[TestMethod]
 		public void ToString2()
 		{
 			Assert.AreEqual("EEDDEF093CC23516", ((long)-1234567899876543210).ToString("X16"));

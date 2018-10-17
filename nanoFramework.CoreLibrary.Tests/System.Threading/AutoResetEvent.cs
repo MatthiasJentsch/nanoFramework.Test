@@ -8,10 +8,12 @@ using System.Threading;
 
 namespace nanoFramework.CoreLibrary.Tests.SystemTests.ThreadingTests
 {
-	public class AutoResetEventTests : ITestClass
+	[TestClass]
+	public class AutoResetEventTests
 	{
 		private AutoResetEvent _are = new AutoResetEvent(false);
 
+		[TestMethod]
 		public void ComplexTest()
 		{
 

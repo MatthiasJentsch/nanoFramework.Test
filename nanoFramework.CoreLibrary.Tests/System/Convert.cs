@@ -8,8 +8,10 @@ using System;
 
 namespace nanoFramework.CoreLibrary.Tests.SystemTests
 {
-	public class ConvertTests : ITestClass
+	[TestClass]
+	public class ConvertTests
 	{
+		[TestMethod]
 		public void FromBase64CharArray()
 		{
 			try
@@ -25,6 +27,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			catch (NotImplementedException) { }
 		}
 
+		[TestMethod]
 		public void FromBase64String()
 		{
 			try
@@ -40,6 +43,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			catch (NotImplementedException) { }
 		}
 
+		[TestMethod]
 		public void ToBase64String1()
 		{
 			try
@@ -52,6 +56,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			catch (NotImplementedException) { }
 		}
 
+		[TestMethod]
 		public void ToBase64String2()
 		{
 			try
@@ -68,6 +73,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			catch (NotImplementedException) { }
 		}
 
+		[TestMethod]
 		public void ToBase64String3()
 		{
 			try
@@ -80,6 +86,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			catch (NotImplementedException) { }
 		}
 
+		[TestMethod]
 		public void ToBase64String4()
 		{
 			try
@@ -96,6 +103,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			catch (NotImplementedException) { }
 		}
 
+		[TestMethod]
 		public void ToByte()
 		{
 			// binary
@@ -108,18 +116,21 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(172, Convert.ToByte("AC", 16));
 		}
 
+		[TestMethod]
 		public void ToChar()
 		{
 			Assert.AreEqual('A', Convert.ToChar(65));
 			Assert.AreEqual('€', Convert.ToChar(8364));
 		}
 
+		[TestMethod]
 		public void ToDouble()
 		{
 			Assert.AreEqual(4711E+81, Convert.ToDouble("4711E+81"));
 			Assert.AreEqual(-815E-47, Convert.ToDouble("-815E-47"));
 		}
 
+		[TestMethod]
 		public void ToInt16()
 		{
 			// binary
@@ -132,6 +143,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(-17078, Convert.ToInt16("BD4A", 16));
 		}
 
+		[TestMethod]
 		public void ToInt32()
 		{
 			// binary
@@ -144,6 +156,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(-1234567890, Convert.ToInt32("B669FD2E", 16));
 		}
 
+		[TestMethod]
 		public void ToInt64()
 		{
 			// binary
@@ -156,6 +169,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(-4446419168141639693, Convert.ToInt64("C24B2553206DFFF3", 16));
 		}
 
+		[TestMethod]
 		public void ToSByte()
 		{
 			// binary
@@ -168,6 +182,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(-42, Convert.ToSByte("D6", 16));
 		}
 
+		[TestMethod]
 		public void ToUInt16()
 		{
 			// binary
@@ -180,6 +195,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(48458, Convert.ToUInt16("BD4A", 16));
 		}
 
+		[TestMethod]
 		public void ToUInt32()
 		{
 			// binary
@@ -192,6 +208,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(3060399406, Convert.ToUInt32("B669FD2E", 16));
 		}
 
+		[TestMethod]
 		public void ToUInt64()
 		{
 			// binary

@@ -9,8 +9,10 @@ using System.Reflection;
 
 namespace nanoFramework.CoreLibrary.Tests.SystemTests
 {
-	public class TypeTests : ITestClass
+	[TestClass]
+	public class TypeTests
 	{
+		[TestMethod]
 		public void GetConstructor()
 		{
 			Assert.IsNotNull(typeof(TestType1).GetConstructor(new Type[] { }));
@@ -19,23 +21,27 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.IsNull(typeof(TestType1).GetConstructor(new Type[] { typeof(bool) }));
 		}
 
+		[TestMethod]
 		public void GetElementType()
 		{
 			Assert.AreEqual("TestType1", typeof(TestType1[]).GetElementType().Name);
 		}
 
+		[TestMethod]
 		public void GetField1()
 		{
 			Assert.IsNotNull(typeof(TestType1).GetField("PublicField"));
 			Assert.IsNull(typeof(TestType1).GetField("PrivateField"));
 		}
 
+		[TestMethod]
 		public void GetField2()
 		{
 			Assert.IsNull(typeof(TestType1).GetField("PublicField", BindingFlags.NonPublic | BindingFlags.Instance));
 			Assert.IsNotNull(typeof(TestType1).GetField("PrivateField", BindingFlags.NonPublic | BindingFlags.Instance));
 		}
 
+		[TestMethod]
 		public void GetFields1()
 		{
 			FieldInfo[] f = typeof(TestType1).GetFields();
@@ -43,6 +49,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(1, f.Length);
 		}
 
+		[TestMethod]
 		public void GetFields2()
 		{
 			FieldInfo[] f1 = typeof(TestType1).GetFields(BindingFlags.Public | BindingFlags.Instance);
@@ -56,6 +63,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(2, f3.Length);
 		}
 
+		[TestMethod]
 		public void GetInterfaces()
 		{
 			Type[] i1 = typeof(TestType1).GetInterfaces();
@@ -75,6 +83,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(2, i5.Length);
 		}
 
+		[TestMethod]
 		public void GetMethod1()
 		{
 			MethodInfo m1 = typeof(TestType1).GetMethod("PublicMethod1");
@@ -92,6 +101,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.IsNull(m4);
 		}
 
+		[TestMethod]
 		public void GetMethod2()
 		{
 			MethodInfo m1 = typeof(TestType1).GetMethod("PublicMethod2", new Type[] { });
@@ -102,6 +112,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.IsNull(m3);
 		}
 
+		[TestMethod]
 		public void GetMethod3()
 		{
 			MethodInfo m1 = typeof(TestType1).GetMethod("PublicMethod1", BindingFlags.NonPublic | BindingFlags.Instance);
@@ -119,6 +130,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.IsNull(m4);
 		}
 
+		[TestMethod]
 		public void GetMethods1()
 		{
 			MethodInfo[] m = typeof(TestType1).GetMethods();
@@ -127,6 +139,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(3 + 2 + typeof(object).GetMethods(BindingFlags.Public | BindingFlags.Instance).Length, m.Length);
 		}
 
+		[TestMethod]
 		public void GetMethods2()
 		{
 			MethodInfo[] m = typeof(TestType1).GetMethods(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly);
@@ -135,6 +148,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(3, m.Length);
 		}
 
+		[TestMethod]
 		public void GetType1()
 		{
 			Type t1 = Type.GetType(typeof(TestType1).FullName);
@@ -144,6 +158,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.IsNull(t2);
 		}
 
+		[TestMethod]
 		public void InvokeMember()
 		{
 			// InvokeMember is not implemented
@@ -158,6 +173,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			catch (NotImplementedException) { }
 		}
 
+		[TestMethod]
 		public void IsInstanceOfType()
 		{
 			object i1 = typeof(TestType4).GetConstructor(new Type[] { }).Invoke(new object[] { });
@@ -175,6 +191,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.IsTrue(typeof(TestType6).IsInstanceOfType(i2));
 		}
 
+		[TestMethod]
 		public void IsSubclassOf()
 		{
 			Assert.IsTrue(typeof(TestType4).IsSubclassOf(typeof(object)));
@@ -185,16 +202,19 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.IsTrue(typeof(TestType7).IsSubclassOf(typeof(TestType6)));
 		}
 
+		[TestMethod]
 		public void ToString1()
 		{
 			Assert.AreEqual(typeof(TestType1).FullName, typeof(TestType1).ToString());
 		}
 
+		[TestMethod]
 		public void Assembly1()
 		{
 			Assert.IsTrue(typeof(TestType1).Assembly == Assembly.GetExecutingAssembly());
 		}
 
+		[TestMethod]
 		public void AssemblyQualifiedName()
 		{
 			string n = typeof(TestType1).AssemblyQualifiedName;
@@ -202,6 +222,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.IsTrue(n.IndexOf(typeof(TestType1).Name) >= 0);
 		}
 
+		[TestMethod]
 		public void BaseType()
 		{
 			Type b = typeof(TestType7).BaseType;
@@ -209,6 +230,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(typeof(TestType6).FullName, b.FullName);
 		}
 
+		[TestMethod]
 		public void DeclaringType()
 		{
 			Type d = typeof(TestType7.TestType8).DeclaringType;
@@ -216,53 +238,62 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual(typeof(TestType7).FullName, d.FullName);
 		}
 
+		[TestMethod]
 		public void FullName()
 		{
 			Assert.AreEqual("nanoFramework.CoreLibrary.Tests.TestType1", typeof(TestType1).FullName);
 		}
 
+		[TestMethod]
 		public void IsAbstract()
 		{
 			Assert.IsTrue(typeof(TestType9).IsAbstract);
 			Assert.IsFalse(typeof(TestType1).IsAbstract);
 		}
 
+		[TestMethod]
 		public void IsArray()
 		{
 			Assert.IsTrue(typeof(TestType1[]).IsArray);
 			Assert.IsFalse(typeof(TestType1).IsArray);
 		}
 
+		[TestMethod]
 		public void IsClass()
 		{
 			Assert.IsTrue(typeof(TestType1).IsClass);
 			Assert.IsFalse(typeof(ITestType2).IsClass);
 		}
 
+		[TestMethod]
 		public void IsEnum()
 		{
 			Assert.IsTrue(typeof(TestType10).IsEnum);
 			Assert.IsFalse(typeof(TestType1).IsEnum);
 		}
 
+		[TestMethod]
 		public void IsInterface()
 		{
 			Assert.IsTrue(typeof(ITestType2).IsInterface);
 			Assert.IsFalse(typeof(TestType1).IsInterface);
 		}
 
+		[TestMethod]
 		public void IsNotPublic()
 		{
 			Assert.IsTrue(typeof(TestType11).IsNotPublic);
 			Assert.IsFalse(typeof(TestType1).IsNotPublic);
 		}
 
+		[TestMethod]
 		public void IsPublic()
 		{
 			Assert.IsTrue(typeof(TestType1).IsPublic);
 			Assert.IsFalse(typeof(TestType11).IsPublic);
 		}
 
+		[TestMethod]
 		public void IsValueType()
 		{
 			Assert.IsTrue(typeof(TestType12).IsValueType);

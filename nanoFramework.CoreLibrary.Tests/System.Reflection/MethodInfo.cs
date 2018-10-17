@@ -9,21 +9,25 @@ using System.Reflection;
 
 namespace nanoFramework.CoreLibrary.Tests.SystemTests.ReflectionTests
 {
-	public class MethodInfoTests : ITestClass, IClassInitialize
+	[TestClass]
+	public class MethodInfoTests
 	{
 		private MethodInfo _info;
 
+		[ClassInitialize]
 		public void ClassInitialize()
 		{
 			_info = typeof(TestType7).GetMethod("PublicMethod");
 			Assert.IsNotNull(_info);
 		}
 
+		[TestMethod]
 		public void MemberType()
 		{
 			Assert.AreEqual(MemberTypes.Method, _info.MemberType);
 		}
 
+		[TestMethod]
 		public void ReturnType()
 		{
 			Type t = _info.ReturnType;

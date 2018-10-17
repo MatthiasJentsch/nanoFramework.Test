@@ -7,8 +7,10 @@ using nanoFramework.Test.Engine;
 
 namespace nanoFramework.CoreLibrary.Tests.SystemTests
 {
-	public class BooleanTests : ITestClass
+	[TestClass]
+	public class BooleanTests
 	{
+		[TestMethod]
 		public void ToString1()
 		{
 			Assert.AreEqual("True", true.ToString());

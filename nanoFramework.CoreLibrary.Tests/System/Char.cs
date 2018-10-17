@@ -7,8 +7,10 @@ using nanoFramework.Test.Engine;
 
 namespace nanoFramework.CoreLibrary.Tests.SystemTests
 {
-	public class CharTests : ITestClass
+	[TestClass]
+	public class CharTests
 	{
+		[TestMethod]
 		public void ToLower1()
 		{
 			// TODO!
@@ -17,12 +19,14 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			Assert.AreEqual('€', '€'.ToLower());*/
 		}
 
+		[TestMethod]
 		public void ToString1()
 		{
 			Assert.AreEqual("A", 'A'.ToString());
 			Assert.AreEqual("€", '€'.ToString());
 		}
 
+		[TestMethod]
 		public void ToUpper()
 		{
 			// TODO!

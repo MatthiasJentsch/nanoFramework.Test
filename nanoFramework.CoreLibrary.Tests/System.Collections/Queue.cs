@@ -8,10 +8,12 @@ using System.Collections;
 
 namespace nanoFramework.CoreLibrary.Tests.SystemTests.CollectionsTests
 {
-	public class QueueTests : ITestClass, ITestInitialize
+	[TestClass]
+	public class QueueTests
 	{
 		private Queue _theQueue = null;
 
+		[TestInitialize]
 		public void TestInitialize()
 		{
 			_theQueue = new Queue();
@@ -30,12 +32,14 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.CollectionsTests
 			_theQueue.Enqueue('k');
 		}
 
+		[TestMethod]
 		public void Clear()
 		{
 			_theQueue.Clear();
 			Assert.AreEqual(0, _theQueue.Count);
 		}
 
+		[TestMethod]
 		public void Clone()
 		{
 			Queue c = _theQueue.Clone() as Queue;
@@ -43,12 +47,14 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.CollectionsTests
 			Assert.AreEqual(13, c.Count);
 		}
 
+		[TestMethod]
 		public void Contains()
 		{
 			Assert.IsTrue(_theQueue.Contains('F'));
 			Assert.IsFalse(_theQueue.Contains('A'));
 		}
 
+		[TestMethod]
 		public void CopyTo()
 		{
 			char[] c = new char[15];
@@ -59,7 +65,8 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.CollectionsTests
 			Assert.AreEqual('n', c[2]);
 			Assert.AreEqual('F', c[6]);
 		}
-		
+
+		[TestMethod]
 		public void Dequeue()
 		{
 			object x = _theQueue.Dequeue();
@@ -68,12 +75,14 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.CollectionsTests
 			Assert.AreEqual(12, _theQueue.Count);
 		}
 
+		[TestMethod]
 		public void Enqueue()
 		{
 			_theQueue.Enqueue('!');
 			Assert.AreEqual(14, _theQueue.Count);
 		}
-		
+
+		[TestMethod]
 		public void GetEnumerator()
 		{
 			IEnumerator e = _theQueue.GetEnumerator();
@@ -99,7 +108,8 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.CollectionsTests
 			Assert.IsTrue(e.MoveNext());
 			Assert.AreEqual('n', e.Current);
 		}
-		
+
+		[TestMethod]
 		public void Peek()
 		{
 			object x = _theQueue.Peek();
@@ -108,6 +118,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.CollectionsTests
 			Assert.AreEqual(13, _theQueue.Count);
 		}
 
+		[TestMethod]
 		public void ToArray()
 		{
 			object[] a = _theQueue.ToArray();
@@ -116,11 +127,13 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests.CollectionsTests
 			Assert.AreEqual('k', a[12]);
 		}
 
+		[TestMethod]
 		public void Count()
 		{
 			Assert.AreEqual(13, _theQueue.Count);
 		}
 
+		[TestMethod]
 		public void IsSynchronized()
 		{
 			Assert.IsFalse(_theQueue.IsSynchronized);

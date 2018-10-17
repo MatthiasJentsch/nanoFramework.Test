@@ -7,33 +7,40 @@ using nanoFramework.Test.Engine;
 
 namespace nanoFramework.CoreLibrary.Tests
 {
-	public class OperatorTests : ITestClass
+	[TestClass]
+	public class OperatorTests
 	{
+		[TestMethod]
 		public void Add()
 		{
 			Assert.AreEqual(4711, 3896 + 815);
 		}
 
+		[TestMethod]
 		public void Subtract()
 		{
 			Assert.AreEqual(68, 110 - 42);
 		}
 
+		[TestMethod]
 		public void Multiply()
 		{
 			Assert.AreEqual(3839465, 4711 * 815);
 		}
 
+		[TestMethod]
 		public void Divide()
 		{
 			Assert.AreEqual(48, 2352 / 49);
 		}
 
+		[TestMethod]
 		public void Modulo()
 		{
 			Assert.AreEqual(30, 2352 % 43);
 		}
 
+		[TestMethod]
 		public void Increment()
 		{
 			int x = 2351;
@@ -43,6 +50,7 @@ namespace nanoFramework.CoreLibrary.Tests
 			Assert.AreEqual(2353, x);
 		}
 
+		[TestMethod]
 		public void Decrement()
 		{
 			int x = 2353;
@@ -52,12 +60,14 @@ namespace nanoFramework.CoreLibrary.Tests
 			Assert.AreEqual(2351, x);
 		}
 
+		[TestMethod]
 		public void NegationMinus()
 		{
 			int x = 4711;
 			Assert.AreEqual(-4711, -x);
 		}
 
+		[TestMethod]
 		public void NegationNot()
 		{
 			bool x = true;
@@ -67,6 +77,7 @@ namespace nanoFramework.CoreLibrary.Tests
 			Assert.IsTrue(x);
 		}
 
+		[TestMethod]
 		public void BinaryOr()
 		{
 			int x = 8;
@@ -74,6 +85,7 @@ namespace nanoFramework.CoreLibrary.Tests
 			Assert.AreEqual(28, x);
 		}
 
+		[TestMethod]
 		public void BinaryAnd()
 		{
 			int x = 8 & 8;
@@ -82,18 +94,21 @@ namespace nanoFramework.CoreLibrary.Tests
 			Assert.AreEqual(0, x);
 		}
 
+		[TestMethod]
 		public void BinaryXor()
 		{
 			int x = 8 ^ 12;
 			Assert.AreEqual(4, x);
 		}
 
+		[TestMethod]
 		public void BinaryShiftLeft()
 		{
 			int x = 256;
 			Assert.AreEqual(4096, x << 4);
 		}
 
+		[TestMethod]
 		public void BinaryShiftRight()
 		{
 			int x = 256;

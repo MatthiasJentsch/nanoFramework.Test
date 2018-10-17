@@ -8,7 +8,8 @@ using System;
 
 namespace nanoFramework.CoreLibrary.Tests.SystemTests
 {
-	public class MathTests : ITestClass, ITestInitialize
+	[TestClass]
+	public class MathTests
 	{
 		private const int MaxIntValueDifferenceDouble = 10;
 		private const int MaxIntValueDifferenceFloat = 10;
@@ -16,6 +17,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 		private bool floatImplemented = false;
 		private bool doubleImplemented = false;
 
+		[TestInitialize]
 		public void TestInitialize()
 		{
 			try
@@ -37,6 +39,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void AbsDouble()
 		{
 			try
@@ -53,6 +56,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void AbsFloat()
 		{
 			try
@@ -69,12 +73,14 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void AbsInt32()
 		{
 			Assert.AreEqual(4711, Math.Abs(4711));
 			Assert.AreEqual(4711, Math.Abs(-4711));
 		}
 
+		[TestMethod]
 		public void AcosDouble()
 		{
 			try
@@ -90,6 +96,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void AcosFloat()
 		{
 			try
@@ -105,6 +112,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void AsinDouble()
 		{
 			try
@@ -120,6 +128,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void AsinFloat()
 		{
 			try
@@ -135,6 +144,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void AtanDouble()
 		{
 			try
@@ -150,6 +160,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void AtanFloat()
 		{
 			try
@@ -165,6 +176,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void Atan2Double()
 		{
 			try
@@ -180,6 +192,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void Atan2Float()
 		{
 			try
@@ -195,6 +208,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void CeilingDouble()
 		{
 			try
@@ -210,6 +224,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void CeilingFloat()
 		{
 			try
@@ -225,6 +240,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void CosDouble()
 		{
 			try
@@ -240,6 +256,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void CosFloat()
 		{
 			try
@@ -255,6 +272,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void CoshDouble()
 		{
 			try
@@ -270,6 +288,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void CoshFloat()
 		{
 			try
@@ -285,6 +304,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void ExpDouble()
 		{
 			try
@@ -300,6 +320,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void ExpFloat()
 		{
 			try
@@ -315,6 +336,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void FloorDouble()
 		{
 			try
@@ -330,6 +352,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void FloorFloat()
 		{
 			try
@@ -345,6 +368,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void IEEERemainderDouble()
 		{
 			try
@@ -360,6 +384,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void IEEERemainderFloat()
 		{
 			try
@@ -375,6 +400,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void LogDouble()
 		{
 			try
@@ -390,6 +416,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void LogFloat()
 		{
 			try
@@ -405,6 +432,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void Log10Double()
 		{
 			try
@@ -420,6 +448,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void Log10Float()
 		{
 			try
@@ -435,6 +464,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void MaxDouble()
 		{
 			try
@@ -450,6 +480,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void MaxFloat()
 		{
 			try
@@ -465,11 +496,13 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void MaxInt32()
 		{
 			Assert.AreEqual(815, Math.Max(-4711, 815));
 		}
 
+		[TestMethod]
 		public void MinDouble()
 		{
 			try
@@ -485,6 +518,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void MinFloat()
 		{
 			try
@@ -500,11 +534,13 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void MinInt32()
 		{
 			Assert.AreEqual(-4711, Math.Min(-4711, 815));
 		}
 
+		[TestMethod]
 		public void PowDouble()
 		{
 			try
@@ -520,6 +556,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void PowFloat()
 		{
 			try
@@ -535,6 +572,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void RoundDouble()
 		{
 			try
@@ -557,6 +595,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void RoundFloat()
 		{
 			try
@@ -579,6 +618,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void SignDouble()
 		{
 			try
@@ -596,6 +636,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void SignFloat()
 		{
 			try
@@ -613,6 +654,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void SinDouble()
 		{
 			try
@@ -628,6 +670,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void SinFloat()
 		{
 			try
@@ -643,6 +686,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void SinhDouble()
 		{
 			try
@@ -658,6 +702,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void SinhFloat()
 		{
 			try
@@ -673,6 +718,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void SqrtDouble()
 		{
 			try
@@ -688,6 +734,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void SqrtFloat()
 		{
 			try
@@ -703,6 +750,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void TanDouble()
 		{
 			try
@@ -718,6 +766,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void TanFloat()
 		{
 			try
@@ -733,6 +782,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void TanhDouble()
 		{
 			try
@@ -748,6 +798,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void TanhFloat()
 		{
 			try
@@ -763,6 +814,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void TruncateDouble()
 		{
 			try
@@ -779,6 +831,7 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			}
 		}
 
+		[TestMethod]
 		public void TruncateFloat()
 		{
 			try
