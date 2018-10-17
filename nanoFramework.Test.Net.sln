@@ -3,11 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nanoFramework.Test.Engine", "nanoFramework.Test.Engine\nanoFramework.Test.Engine.csproj", "{700E8C6B-4EAF-462B-AC2C-AC9CFFF6017C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nanoFramework.Tools.UnitTester", "nanoFramework.Tools.UnitTester\nanoFramework.Tools.UnitTester.csproj", "{C952C621-60BF-44B9-B5B6-AE03F84BE17C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "nanoFramework.Tools.UnitTestManager", "nanoFramework.Tools.UnitTestManager\nanoFramework.Tools.UnitTestManager.csproj", "{22A17981-300A-469F-809A-4BB38BF2FB4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nanoFramework.Test.Engine", "nanoFramework.Test.Engine\nanoFramework.Test.Engine.csproj", "{700E8C6B-4EAF-462B-AC2C-AC9CFFF6017C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,18 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{700E8C6B-4EAF-462B-AC2C-AC9CFFF6017C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{700E8C6B-4EAF-462B-AC2C-AC9CFFF6017C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{700E8C6B-4EAF-462B-AC2C-AC9CFFF6017C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{700E8C6B-4EAF-462B-AC2C-AC9CFFF6017C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C952C621-60BF-44B9-B5B6-AE03F84BE17C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C952C621-60BF-44B9-B5B6-AE03F84BE17C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C952C621-60BF-44B9-B5B6-AE03F84BE17C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C952C621-60BF-44B9-B5B6-AE03F84BE17C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{22A17981-300A-469F-809A-4BB38BF2FB4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{22A17981-300A-469F-809A-4BB38BF2FB4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22A17981-300A-469F-809A-4BB38BF2FB4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22A17981-300A-469F-809A-4BB38BF2FB4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{700E8C6B-4EAF-462B-AC2C-AC9CFFF6017C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{700E8C6B-4EAF-462B-AC2C-AC9CFFF6017C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{700E8C6B-4EAF-462B-AC2C-AC9CFFF6017C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{700E8C6B-4EAF-462B-AC2C-AC9CFFF6017C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
