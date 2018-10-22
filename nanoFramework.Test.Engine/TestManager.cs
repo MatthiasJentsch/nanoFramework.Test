@@ -52,7 +52,7 @@ namespace nanoFramework.Test.Engine
 		/// <exception cref="System.NotImplementedException">If the target doesn't support AppDomains!</exception>
 		public static void RunTests()
 		{
-			foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies()) RunTests(assembly);
+			foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies()) RunTests(assembly);
 		}
 
 		/// <summary>
@@ -62,7 +62,7 @@ namespace nanoFramework.Test.Engine
 		public static void RunTests(Assembly assembly)
 		{
 			if (assembly == null) throw new ArgumentNullException("assembly");
-			var assemblyName = assembly.FullName;
+			string assemblyName = assembly.FullName;
 
 			// Get all test class types
 			var testClassTypes = GetTestClassTypes(assembly);
@@ -70,17 +70,17 @@ namespace nanoFramework.Test.Engine
 			if (testClassTypes.Count == 0) return;
 
 			// wait 5 seconds to lets the listener establish the connection before outputting anything
-			Console.Write("5.");
+			Console.WriteLine("5.....");
 			Thread.Sleep(1000);
-			Console.Write("4.");
+			Console.WriteLine("4....");
 			Thread.Sleep(1000);
-			Console.Write("3.");
+			Console.WriteLine("3...");
 			Thread.Sleep(1000);
-			Console.Write("2.");
+			Console.WriteLine("2..");
 			Thread.Sleep(1000);
-			Console.Write("1.");
+			Console.WriteLine("1.");
 			Thread.Sleep(1000);
-			Console.WriteLine(" - GO!");
+			Console.WriteLine("GO!");
 
 			// iterate through all test class types and find the types that have the [AssemblyInitialize]/[IAssemblyCleanup] attributes
 			Type assemblyInitializeType = null;
@@ -115,11 +115,11 @@ namespace nanoFramework.Test.Engine
 			// execute the AssemblyInitialize method
 			if (assemblyInitializeType != null)
 			{
-				var assemblyInitializeMethod =
+				MethodInfo assemblyInitializeMethod =
 					(MethodInfo) GetMethodsWithAttribute(assemblyCleanupType, typeof(AssemblyCleanupAttribute))[0];
 				PrintHelper.PrintMessage(string.Concat(assemblyName, " : Calling ", assemblyInitializeMethod.Name,
 					" for assembly initialize"));
-				var testClassInstance = assemblyInitializeType.GetConstructor(new Type[] { }).Invoke(new object[] { });
+				object testClassInstance = assemblyInitializeType.GetConstructor(new Type[] { }).Invoke(new object[] { });
 				assemblyInitializeMethod.Invoke(testClassInstance, new object[] { });
 			}
 
@@ -134,11 +134,11 @@ namespace nanoFramework.Test.Engine
 			// execute the AssemblyCleanup method
 			if (assemblyCleanupType != null)
 			{
-				var assemblyCleanupMethod =
+				MethodInfo assemblyCleanupMethod =
 					(MethodInfo) GetMethodsWithAttribute(assemblyCleanupType, typeof(AssemblyCleanupAttribute))[0];
 				PrintHelper.PrintMessage(string.Concat(assemblyName, " : Calling ", assemblyCleanupMethod.Name,
 					" for assembly cleanup"));
-				var testClassInstance = assemblyCleanupType.GetConstructor(new Type[] { }).Invoke(new object[] { });
+				object testClassInstance = assemblyCleanupType.GetConstructor(new Type[] { }).Invoke(new object[] { });
 				assemblyCleanupMethod.Invoke(testClassInstance, new object[] { });
 			}
 
@@ -154,25 +154,28 @@ namespace nanoFramework.Test.Engine
 		public static ArrayList GetTestClassTypes(Assembly assembly)
 		{
 			// examine all types
-			var testClassTypes = new ArrayList();
-			var types = assembly.GetTypes();
-			foreach (var type in types)
+			ArrayList testClassTypes = new ArrayList();
+			Type[] types = assembly.GetTypes();
+			foreach (Type type in types)
 			{
 				// skip all types that are not a public class
 				if (!type.IsClass || !type.IsPublic) continue;
 
 				// skip if the class has no a public parameterless constructor
-				var constructor = type.GetConstructor(new Type[] { });
+				ConstructorInfo constructor = type.GetConstructor(new Type[] { });
 				if (constructor == null) continue;
 
 				// Test if this class has the [TestClass] attribute
-				foreach (var attribute in type.GetCustomAttributes(false))
-					if (typeof(TestClassAttribute).Equals(attribute))
+				foreach (object attribute in type.GetCustomAttributes(false))
+				{
+					// Check by type equality or type name equality!
+					if (typeof(TestClassAttribute).Equals(attribute) || typeof(TestClassAttribute).Name == attribute.GetType().Name)
 					{
 						// found! => add to the result
 						testClassTypes.Add(type);
 						break;
 					}
+				}
 			}
 
 			return testClassTypes;
@@ -186,16 +189,16 @@ namespace nanoFramework.Test.Engine
 		/// <returns>MethodInfo's as List</returns>
 		public static ArrayList GetMethodsWithAttribute(Type testClassType, Type attributeType)
 		{
-			var result = new ArrayList();
+			ArrayList result = new ArrayList();
 
 			// examine all public instance methods that are declared directly in this class (no inheritance)
-			var methods =
+			MethodInfo[] methods =
 				testClassType.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
-			foreach (var method in methods)
+			foreach (MethodInfo method in methods)
 				// interate thru all attributes
-			foreach (var attribute in method.GetCustomAttributes(false))
-				// is it the desired attriube?
-				if (attributeType.Equals(attribute))
+			foreach (object attribute in method.GetCustomAttributes(false))
+				// is it the desired attriube? Check by type equality or type name equality!
+				if (attributeType.Equals(attribute) || attributeType.Name == attribute.GetType().Name)
 					result.Add(method);
 
 			return result.Count > 0 ? result : null;
@@ -212,26 +215,30 @@ namespace nanoFramework.Test.Engine
 		private static void RunTests(Type testClassType)
 		{
 			// create the instance and cast to the interfaces that has the initialize/cleanup methods
-			var testClassInstance = testClassType.GetConstructor(new Type[] { }).Invoke(new object[] { });
+			object testClassInstance = testClassType.GetConstructor(new Type[] { }).Invoke(new object[] { });
 
 			// Find the test methods
-			var testMethods = GetMethodsWithAttribute(testClassType, typeof(TestMethodAttribute));
+			ArrayList testMethods = GetMethodsWithAttribute(testClassType, typeof(TestMethodAttribute));
+			if (testMethods == null)
+			{
+				return;
+			}
 
 			// Execute "ClassInitialize" before all tests
-			var classInitialize = GetMethodsWithAttribute(testClassType, typeof(ClassInitializeAttribute));
+			ArrayList classInitialize = GetMethodsWithAttribute(testClassType, typeof(ClassInitializeAttribute));
 			if (classInitialize != null)
 			{
-				var classInitializeMethod = (MethodInfo) classInitialize[0];
+				MethodInfo classInitializeMethod = (MethodInfo) classInitialize[0];
 				PrintHelper.PrintMessage(string.Concat(testClassType.FullName, " : Calling ",
 					classInitializeMethod.Name, " for class initialize"));
 				classInitializeMethod.Invoke(testClassInstance, new object[] { });
 			}
 
 			// Execute all test methods
-			var testInitialize = GetMethodsWithAttribute(testClassType, typeof(TestInitializeAttribute));
-			var testInitializeMethod = testInitialize != null ? (MethodInfo) testInitialize[0] : null;
-			var testCleanup = GetMethodsWithAttribute(testClassType, typeof(TestCleanupAttribute));
-			var testCleanupMethod = testCleanup != null ? (MethodInfo) testCleanup[0] : null;
+			ArrayList testInitialize = GetMethodsWithAttribute(testClassType, typeof(TestInitializeAttribute));
+			MethodInfo testInitializeMethod = testInitialize != null ? (MethodInfo) testInitialize[0] : null;
+			ArrayList testCleanup = GetMethodsWithAttribute(testClassType, typeof(TestCleanupAttribute));
+			MethodInfo testCleanupMethod = testCleanup != null ? (MethodInfo) testCleanup[0] : null;
 			foreach (MethodInfo testMethod in testMethods)
 			{
 				// Execute "TestInitialize" before each test
@@ -242,11 +249,11 @@ namespace nanoFramework.Test.Engine
 					testInitializeMethod.Invoke(testClassInstance, new object[] { });
 				}
 
-				var startTicks = DateTime.UtcNow.Ticks;
+				long startTicks = DateTime.UtcNow.Ticks;
 				TestStatus status;
 				Exception exception;
 				ExecuteTestMethod(testMethod, testClassInstance, out status, out exception);
-				var stopTicks = DateTime.UtcNow.Ticks;
+				long stopTicks = DateTime.UtcNow.Ticks;
 				// send the result to the debugger
 				PrintHelper.PrintTestResult(testClassType.FullName, testMethod.Name, status, exception,
 					stopTicks - startTicks);
@@ -261,10 +268,10 @@ namespace nanoFramework.Test.Engine
 			}
 
 			// Execute "ClassCleanup" after all tests
-			var classCleanup = GetMethodsWithAttribute(testClassType, typeof(ClassCleanupAttribute));
+			ArrayList classCleanup = GetMethodsWithAttribute(testClassType, typeof(ClassCleanupAttribute));
 			if (classCleanup != null)
 			{
-				var classCleanupMethod = (MethodInfo) classInitialize[0];
+				MethodInfo classCleanupMethod = (MethodInfo) classInitialize[0];
 				PrintHelper.PrintMessage(string.Concat(testClassType.FullName, " : Calling ", classCleanupMethod.Name,
 					" for class cleanup"));
 				classCleanupMethod.Invoke(testClassInstance, new object[] { });

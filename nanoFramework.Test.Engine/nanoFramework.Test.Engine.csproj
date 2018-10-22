@@ -7,9 +7,9 @@
     <ProjectGuid>{700E8C6B-4EAF-462B-AC2C-AC9CFFF6017C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>nfUnit.Net</RootNamespace>
-    <AssemblyName>nfUnit.Net</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <RootNamespace>nanoFramework.Test.Engine</RootNamespace>
+    <AssemblyName>nanoFramework.Test.Engine</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>

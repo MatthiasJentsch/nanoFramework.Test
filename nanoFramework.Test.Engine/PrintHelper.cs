@@ -35,7 +35,7 @@ namespace nanoFramework.Test.Engine
 		internal static void PrintTestResult(string fullTestClassName, string testMethodName, TestStatus testStatus,
 			Exception testException, long elapsedTicks)
 		{
-			var result = string.Concat(fullTestClassName, ".", testMethodName, " : ");
+			string result = string.Concat(fullTestClassName, ".", testMethodName, " : ");
 
 			switch (testStatus)
 			{

@@ -145,8 +145,8 @@ namespace nanoFramework.Test.Engine
 
 			if (expected == null || actual == null) return false;
 
-			var expectedType = expected.GetType();
-			var actualType = actual.GetType();
+			Type expectedType = expected.GetType();
+			Type actualType = actual.GetType();
 
 			if (expectedType.IsValueType && !expectedType.IsEnum && actualType.IsValueType && !actualType.IsEnum)
 			{
@@ -156,10 +156,10 @@ namespace nanoFramework.Test.Engine
 				ulong ui2 = 0;
 				double d1 = 0;
 				double d2 = 0;
-				var b1 = false;
-				var b2 = false;
-				var c1 = '\0';
-				var c2 = '\0';
+				bool b1 = false;
+				bool b2 = false;
+				char c1 = '\0';
+				char c2 = '\0';
 				DateTime dt1 = new DateTime(), dt2 = new DateTime();
 				TimeSpan tm1 = new TimeSpan(), tm2 = new TimeSpan();
 
@@ -281,7 +281,7 @@ namespace nanoFramework.Test.Engine
 		/// <returns>The concatenated string</returns>
 		private static string BuildMessage(string messageType, string message, params object[] parameters)
 		{
-			var result = messageType;
+			string result = messageType;
 
 			if (message != null && message.Length != 0) result += ": " + message;
 
@@ -289,7 +289,7 @@ namespace nanoFramework.Test.Engine
 			{
 				result += " (";
 
-				for (var i = 0; i < parameters.Length; i++)
+				for (int i = 0; i < parameters.Length; i++)
 				{
 					if (parameters[i] != null)
 						result += parameters[i].ToString();
