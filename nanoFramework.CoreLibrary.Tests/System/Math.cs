@@ -17,8 +17,8 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 		private bool floatImplemented = false;
 		private bool doubleImplemented = false;
 
-		[TestInitialize]
-		public void TestInitialize()
+		[ClassInitialize]
+		public void ClassInitialize()
 		{
 			try
 			{
