@@ -9,9 +9,10 @@ using System;
 namespace nanoFramework.CoreLibrary.Tests.SystemTests
 {
 	[TestClass]
+	[Ignore("Math is no longer a part of the core library")]
 	public class MathTests
 	{
-		private const int MaxIntValueDifferenceDouble = 10;
+		/*private const int MaxIntValueDifferenceDouble = 10;
 		private const int MaxIntValueDifferenceFloat = 10;
 
 		private bool floatImplemented = false;
@@ -864,6 +865,6 @@ namespace nanoFramework.CoreLibrary.Tests.SystemTests
 			int int2 = bytes2[0] + (bytes2[1] << 8) + (bytes2[1] << 16) + (bytes2[2] << 24);
 			int diff = int1 > int2 ? int1 - int2 : int2 - int1;
 			Assert.IsTrue(diff <= MaxIntValueDifferenceFloat);
-		}
+		}*/
 	}
 }

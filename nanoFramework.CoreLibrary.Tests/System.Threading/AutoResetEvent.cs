@@ -9,6 +9,7 @@ using System.Threading;
 namespace nanoFramework.CoreLibrary.Tests.SystemTests.ThreadingTests
 {
 	[TestClass]
+	[Ignore("Not implemented yet!")]
 	public class AutoResetEventTests
 	{
 		private AutoResetEvent _are = new AutoResetEvent(false);
