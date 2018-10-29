@@ -16,7 +16,7 @@ namespace nanoFramework.Test.Engine
 		/// </summary>
 		Undefined = 0,
 
-		/// <summary>
+		/// <summary>ne
 		///     Test passed without a failure
 		/// </summary>
 		Passed = 1,
@@ -24,6 +24,11 @@ namespace nanoFramework.Test.Engine
 		/// <summary>
 		///     Test failed with an exception
 		/// </summary>
-		Failed = 2
+		Failed = 2,
+
+		/// <summary>
+		/// test was marked for ignore with the <see cref="IgnoreAttribute"/>
+		/// </summary>
+		Ignored = 3
 	}
 }
