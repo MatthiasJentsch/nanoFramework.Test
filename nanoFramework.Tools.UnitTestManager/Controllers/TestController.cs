@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using nanoFramework.Tools.UnitTestManager.Models;
 
@@ -20,16 +18,17 @@ namespace nanoFramework.Tools.UnitTestManager.Controllers
 		[HttpGet]
 		public List<AvailableTestDevice> GetTestDevices()
 		{
-			List<AvailableTestDevice> devices = new List<AvailableTestDevice>();
-			foreach (string deviceType in _testService.ConnectedDeviceTypes)
+			var devices = new List<AvailableTestDevice>();
+			foreach (var deviceType in _testService.ConnectedDeviceTypes)
 			{
-				AvailableTestDevice device = new AvailableTestDevice
+				var device = new AvailableTestDevice
 				{
 					DeviceType = deviceType,
 					IsReadyForNewTest = _testService.IsDeviceTypeAvailable(deviceType)
 				};
 				devices.Add(device);
 			}
+
 			return devices;
 		}
 	}
@@ -66,5 +65,5 @@ namespace nanoFramework.Tools.UnitTestManager.Controllers
 		{
 			return _testService.GetTestResults(testId);
 		}
-    }
+	}
 }
