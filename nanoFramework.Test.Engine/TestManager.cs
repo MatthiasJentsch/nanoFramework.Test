@@ -239,12 +239,10 @@ namespace nanoFramework.Test.Engine
 		/// <param name="testClassType">The test class type</param>
 		private static void RunTests(Type testClassType)
 		{
-			string ignoreMessage = null;
-
 			// should the class be ignored?
-			if (HasIgnoreAttribute(testClassType, out ignoreMessage))
+			if (HasIgnoreAttribute(testClassType))
 			{
-				PrintHelper.PrintMessage(string.Concat(testClassType.FullName, " : Ignored with message: ", ignoreMessage ?? "(null)"));
+				PrintHelper.PrintMessage(string.Concat(testClassType.FullName, " : Ignored"));
 				return;
 			}
 
@@ -280,9 +278,9 @@ namespace nanoFramework.Test.Engine
 			foreach (MethodInfo testMethod in testMethods)
 			{
 				// should the test be ignored?
-				if (HasIgnoreAttribute(testMethod, out ignoreMessage))
+				if (HasIgnoreAttribute(testMethod))
 				{
-					PrintHelper.PrintMessage(string.Concat(testClassType.FullName, ".", testMethod.Name, " : Ignored with message: ", ignoreMessage ?? "(null)"));
+					PrintHelper.PrintMessage(string.Concat(testClassType.FullName, ".", testMethod.Name, " : Ignored"));
 					continue;
 				}
 
@@ -353,11 +351,10 @@ namespace nanoFramework.Test.Engine
 		///   Checks if a type has the <see cref="IgnoreAttribute" /> set
 		/// </summary>
 		/// <param name="type">The type</param>
-		/// <param name="ignoreMessage">If the <see cref="IgnoreAttribute" /> is present then the IgnoreMessage will be returned</param>
 		/// <returns>true if the <see cref="IgnoreAttribute" /> is present; false otherwise</returns>
-		private static bool HasIgnoreAttribute(Type type, out string ignoreMessage)
+		private static bool HasIgnoreAttribute(Type type)
 		{
-			return HasIgnoreAttribute(type.GetCustomAttributes(false), out ignoreMessage);
+			return HasIgnoreAttribute(type.GetCustomAttributes(false));
 		}
 
 		/// <summary>
@@ -366,9 +363,9 @@ namespace nanoFramework.Test.Engine
 		/// <param name="method">The method</param>
 		/// <param name="ignoreMessage">If the <see cref="IgnoreAttribute" /> is present then the IgnoreMessage will be returned</param>
 		/// <returns>true if the <see cref="IgnoreAttribute" /> is present; false otherwise</returns>
-		private static bool HasIgnoreAttribute(MethodInfo method, out string ignoreMessage)
+		private static bool HasIgnoreAttribute(MethodInfo method)
 		{
-			return HasIgnoreAttribute(method.GetCustomAttributes(false), out ignoreMessage);
+			return HasIgnoreAttribute(method.GetCustomAttributes(false));
 		}
 
 		/// <summary>
@@ -377,19 +374,17 @@ namespace nanoFramework.Test.Engine
 		/// <param name="attributes">The attributes array</param>
 		/// <param name="ignoreMessage">If the <see cref="IgnoreAttribute" /> is present then the IgnoreMessage will be returned</param>
 		/// <returns>true if the <see cref="IgnoreAttribute" /> is present; false otherwise</returns>
-		private static bool HasIgnoreAttribute(object[] attributes, out string ignoreMessage)
+		private static bool HasIgnoreAttribute(object[] attributes)
 		{
 			foreach (object attribute in attributes)
 			{
 				// check for IgnoreAttribute
 				if (typeof(IgnoreAttribute).Equals(attribute) || typeof(IgnoreAttribute).Name == attribute.GetType().Name)
 				{
-					ignoreMessage = "Not retrievable!"; //((IgnoreAttribute) attribute).IgnoreMessage;
 					return true;
 				}
 			}
 
-			ignoreMessage = null;
 			return false;
 		}
 

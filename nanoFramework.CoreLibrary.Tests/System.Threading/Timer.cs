@@ -8,7 +8,7 @@ using nanoFramework.Test.Engine;
 namespace nanoFramework.CoreLibrary.Tests.SystemTests.ThreadingTests
 {
 	[TestClass]
-	[Ignore("Not implemented yet!")]
+	[Ignore()]
 	public class TimerTests
 	{
 	}

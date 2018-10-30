@@ -9,7 +9,7 @@ using System;
 namespace nanoFramework.CoreLibrary.Tests.SystemTests
 {
 	[TestClass]
-	[Ignore("Math is no longer a part of the core library")]
+	[Ignore()]
 	public class MathTests
 	{
 		/*private const int MaxIntValueDifferenceDouble = 10;

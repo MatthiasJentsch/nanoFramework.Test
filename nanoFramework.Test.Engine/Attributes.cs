@@ -30,16 +30,6 @@ namespace nanoFramework.Test.Engine
 	[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
 	public sealed class IgnoreAttribute : Attribute
 	{
-		public IgnoreAttribute() : this(null)
-		{
-		}
-
-		public IgnoreAttribute(string ignoreMessage)
-		{
-			IgnoreMessage = ignoreMessage;
-		}
-
-		public string IgnoreMessage { get; }
 	}
 
 	/// <summary>
